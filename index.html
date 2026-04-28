@@ -3,34 +3,160 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D Viewer</title>
+<title>Ashwagandha 3D</title>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
-body { margin:0; background:#fff; overflow:hidden; }
-.loader {
-  position:fixed;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  color:#555;
+body {
+  margin: 0;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* ===== SPLASH LOADER ===== */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.logo {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.bar {
+  width: 180px;
+  height: 4px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: #111;
+  transition: width 0.3s;
+}
+
+/* ===== TOP UI ===== */
+.topbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== BOTTOM CONTROLS ===== */
+.controls {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ===== INSTRUCTIONS ===== */
+.instructions {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #333;
+  animation: fade 2s ease;
+}
+
+@keyframes fade {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="loader">Loading Model...</div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="logo">Ashwagandha 3D</div>
+  <div class="bar">
+    <div class="progress" id="progress"></div>
+  </div>
+</div>
 
-<!-- MODEL VIEWER (NO CDN ISSUES) -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<!-- TOP -->
+<div class="topbar">Drag • Zoom • Rotate</div>
 
+<!-- INSTRUCTIONS -->
+<div class="instructions">Use fingers to explore the model</div>
+
+<!-- MODEL -->
 <model-viewer 
+  id="model"
   src="ashwagandha.glb"
   camera-controls
   auto-rotate
-  disable-zoom="false"
   style="width:100vw;height:100vh;"
-  onload="document.querySelector('.loader').style.display='none'">
-</model-viewer>
+></model-viewer>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="btn" onclick="toggleRotate()">Auto Rotate</div>
+  <div class="btn" onclick="resetCam()">Reset</div>
+</div>
+
+<script>
+const viewer = document.getElementById("model");
+const progress = document.getElementById("progress");
+
+// PROGRESS BAR
+viewer.addEventListener("progress", (e) => {
+  const percent = Math.round(e.detail.totalProgress * 100);
+  progress.style.width = percent + "%";
+});
+
+// HIDE LOADER
+viewer.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 500);
+});
+
+// TOGGLE ROTATION
+function toggleRotate() {
+  viewer.autoRotate = !viewer.autoRotate;
+}
+
+// RESET CAMERA
+function resetCam() {
+  viewer.cameraOrbit = "0deg 75deg 3m";
+}
+</script>
 
 </body>
 </html>
