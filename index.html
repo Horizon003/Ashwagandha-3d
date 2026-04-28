@@ -1,106 +1,293 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ashwagandha 3D | Haris (Horizon)</title>
-    
-    <!-- Tailwind CSS for styling -->
+    <title>Ashwagandha 3D | Made by Horizon</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
+    <!-- Google Fonts: SF-style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <!-- Google Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <style>
-        /* Hide Default Progress Bar of Model Viewer */
-        model-viewer::part(default-progress-bar) {
-            display: none;
+        :root {
+            --titanium-1: #d8d8da;
+            --titanium-2: #b8b8bc;
+            --titanium-3: #9a9a9e;
+            --titanium-4: #6e6e72;
         }
 
-        /* Apple Style Background */
-        .apple-bg {
-            background-color: #f5f5f7;
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Glassmorphism Utilities */
-        .glass {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        model-viewer::part(default-progress-bar) { display: none; }
+
+        /* ===== iPhone Titanium Header ===== */
+        .titanium-bar {
+            background:
+                radial-gradient(circle at 15% 50%, rgba(255,255,255,0.55) 0%, transparent 35%),
+                radial-gradient(circle at 85% 50%, rgba(255,255,255,0.4) 0%, transparent 40%),
+                linear-gradient(135deg, #c9c9cd 0%, #a8a8ac 25%, #d4d4d8 50%, #9e9ea2 75%, #bcbcc0 100%);
+            background-size: 100% 100%, 100% 100%, 200% 200%;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Tiny "dots" / micro-noise for that brushed titanium feel */
+        .titanium-bar::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(rgba(255,255,255,0.6) 0.5px, transparent 0.6px),
+                radial-gradient(rgba(0,0,0,0.08) 0.5px, transparent 0.6px);
+            background-size: 4px 4px, 7px 7px;
+            background-position: 0 0, 2px 3px;
+            opacity: 0.55;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        .titanium-bar::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.12) 100%);
+            pointer-events: none;
         }
 
-        /* --- Tutorial Animations --- */
+        /* Apple-style title text */
+        .apple-title {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(180deg, #0a0a0a 0%, #2a2a2a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+        }
+
+        /* Profile Glow Ring */
+        .glow-ring {
+            position: relative;
+            border-radius: 9999px;
+            padding: 2.5px;
+            background: conic-gradient(from 0deg, #fff, #b0b0b4, #fff, #8e8e92, #fff);
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.08),
+                0 0 18px rgba(255,255,255,0.85),
+                0 0 32px rgba(180,180,190,0.55),
+                0 4px 14px rgba(0,0,0,0.18);
+            animation: ringSpin 6s linear infinite;
+        }
+        @keyframes ringSpin {
+            to { transform: rotate(360deg); }
+        }
+        .glow-ring img {
+            display: block;
+            border-radius: 9999px;
+            background: #fff;
+            transform: rotate(0deg);
+            animation: ringSpinReverse 6s linear infinite;
+        }
+        @keyframes ringSpinReverse {
+            to { transform: rotate(-360deg); }
+        }
+
+        /* ===== Splash ===== */
+        .splash-bg {
+            background:
+                radial-gradient(circle at 20% 20%, #ffffff 0%, transparent 45%),
+                radial-gradient(circle at 80% 80%, #f0f0f3 0%, transparent 50%),
+                linear-gradient(135deg, #fafafa 0%, #ececef 100%);
+        }
+        .blob {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(60px);
+            opacity: 0.55;
+            animation: blobFloat 8s ease-in-out infinite;
+        }
+        .blob-1 { width: 280px; height: 280px; background: #c8e6ff; top: 10%; left: -60px; animation-delay: 0s; }
+        .blob-2 { width: 220px; height: 220px; background: #ffd6e0; bottom: 12%; right: -40px; animation-delay: -3s; }
+        .blob-3 { width: 180px; height: 180px; background: #e0d4ff; top: 45%; left: 50%; animation-delay: -5s; }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(30px,-20px) scale(1.1); }
+        }
+
+        .splash-logo {
+            animation: logoBounce 2s ease-in-out infinite;
+        }
+        @keyframes logoBounce {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        .progress-track {
+            background: rgba(0,0,0,0.06);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #1a1a1a 0%, #4a4a4a 50%, #1a1a1a 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.6s linear infinite;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .dot-loader span {
+            display: inline-block;
+            width: 6px; height: 6px; margin: 0 2px;
+            background: #1a1a1a;
+            border-radius: 9999px;
+            animation: dotPulse 1.2s ease-in-out infinite;
+        }
+        .dot-loader span:nth-child(2) { animation-delay: 0.15s; }
+        .dot-loader span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes dotPulse {
+            0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ===== Floating Icon Buttons ===== */
+        .icon-btn {
+            width: 52px; height: 52px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow:
+                0 4px 14px rgba(0,0,0,0.10),
+                0 1px 2px rgba(0,0,0,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #1a1a1a;
+        }
+        .icon-btn:hover { transform: scale(1.08); }
+        .icon-btn:active { transform: scale(0.92); }
+        .icon-btn.active {
+            background: #1a1a1a;
+            color: #fff;
+            box-shadow:
+                0 4px 18px rgba(0,0,0,0.35),
+                0 0 0 4px rgba(0,0,0,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .icon-btn .label {
+            position: absolute;
+            bottom: -22px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            opacity: 0.85;
+        }
+
+        .spin-once { animation: spinOnce 0.6s ease-out; }
+        @keyframes spinOnce {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        /* Tutorial */
         .touch-indicator {
-            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
-            animation: pulse-ring 2s infinite;
+            box-shadow: 0 0 0 0 rgba(0,0,0,0.4);
+            animation: pulseRing 2s infinite;
         }
-
-        @keyframes pulse-ring {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+        @keyframes pulseRing {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0,0,0,0.3); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0,0,0,0); }
         }
-
-        /* Drag / Swipe Animation */
         @keyframes swipeAnim {
             0% { transform: translateX(-20px); }
             50% { transform: translateX(20px); }
             100% { transform: translateX(-20px); }
         }
-        .anim-swipe {
-            animation: swipeAnim 2.5s ease-in-out infinite;
-        }
+        .anim-swipe { animation: swipeAnim 2.5s ease-in-out infinite; }
 
-        /* Pinch Animation */
-        @keyframes pinchTop {
-            0%, 100% { transform: translate(-15px, -15px); }
-            50% { transform: translate(5px, 5px); }
+        /* Subtle floor under model */
+        .model-stage {
+            background:
+                radial-gradient(ellipse at center 80%, rgba(0,0,0,0.06) 0%, transparent 60%),
+                linear-gradient(180deg, #f5f5f7 0%, #ececef 100%);
         }
-        @keyframes pinchBottom {
-            0%, 100% { transform: translate(15px, 15px); }
-            50% { transform: translate(-5px, -5px); }
-        }
-        .anim-pinch-1 { animation: pinchTop 2.5s ease-in-out infinite; }
-        .anim-pinch-2 { animation: pinchBottom 2.5s ease-in-out infinite; }
     </style>
 </head>
-<body class="overflow-hidden bg-[#f5f5f7] text-black font-sans selection:bg-gray-300 antialiased">
+<body class="overflow-hidden bg-[#f5f5f7] text-black selection:bg-gray-300">
 
-    <!-- Splash Screen with Loading Bar -->
-    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white transition-opacity duration-700">
-        <div class="mb-8 flex flex-col items-center">
-            <!-- Sleek Icon -->
-            <svg class="w-16 h-16 mb-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
-            </svg>
-            <h1 class="text-2xl font-semibold tracking-tight text-black">Ashwagandha 3D</h1>
-            <p class="text-sm text-gray-500 mt-2" id="progress-text">Loading Model 0%</p>
+    <!-- ===== Splash Screen ===== -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center splash-bg transition-opacity duration-700 overflow-hidden">
+        <!-- Funky floating blobs -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+
+        <!-- Apple-style logo -->
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="splash-logo mb-6">
+                <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-white to-gray-200 shadow-[0_10px_40px_rgba(0,0,0,0.15)] flex items-center justify-center border border-white">
+                    <!-- Leaf/plant icon -->
+                    <svg class="w-10 h-10 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14v8"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="apple-title text-3xl mb-1">Ashwagandha 3D</h1>
+            <p class="text-xs text-gray-500 font-medium tracking-wide mb-8">EXPLORE • ROTATE • DISCOVER</p>
+
+            <!-- Progress -->
+            <div class="w-64 h-[3px] progress-track rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full progress-fill rounded-full" style="width:0%"></div>
+            </div>
+            <div class="flex items-center gap-2 mt-4">
+                <span id="progress-text" class="text-xs font-medium text-gray-600 tabular-nums">Loading 0%</span>
+                <span class="dot-loader"><span></span><span></span><span></span></span>
+            </div>
         </div>
-        <!-- Progress Bar -->
-        <div class="w-64 h-[2px] bg-gray-200 rounded-full overflow-hidden">
-            <div id="progress-bar" class="h-full bg-black w-0 transition-all duration-300 ease-out"></div>
-        </div>
+
+        <!-- Splash footer -->
+        <div class="absolute bottom-6 text-[10px] text-gray-400 font-medium tracking-widest uppercase">Made by Horizon</div>
     </div>
 
-    <!-- Main Application Area -->
-    <div class="h-screen w-full flex flex-col apple-bg relative">
-        
-        <!-- Top Bar -->
-        <header class="h-12 w-full bg-gray-200 text-black absolute top-0 z-30 flex items-center justify-center gap-2 px-6 shadow-sm border-b border-gray-300">
-            <!-- 3D Cube Logo -->
-            <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <h2 class="text-sm font-bold tracking-wide">3D Model Overview</h2>
+    <!-- ===== Main App ===== -->
+    <div class="h-screen w-full flex flex-col relative">
+
+        <!-- ===== Titanium Header: Made by Horizon ===== -->
+        <header class="titanium-bar w-full z-30 flex items-center justify-center gap-4 px-4 py-3 sm:py-4 border-b border-black/10 shadow-sm">
+            <!-- Profile Picture with Glow Ring -->
+            <div class="glow-ring relative z-10 shrink-0">
+                <img src="assets/haris-horizon.webp" alt="Haris Horizon"
+                     class="w-12 h-12 sm:w-14 sm:h-14 object-cover">
+            </div>
+            <!-- Title -->
+            <div class="relative z-10 flex flex-col leading-tight">
+                <span class="text-[10px] sm:text-xs font-medium text-gray-700 tracking-[0.18em] uppercase">Made by</span>
+                <span class="apple-title text-2xl sm:text-3xl">Horizon</span>
+            </div>
         </header>
 
-        <!-- 3D Model Viewer Container -->
-        <main class="flex-grow w-full relative">
+        <!-- ===== 3D Model Viewer ===== -->
+        <main class="flex-grow w-full relative model-stage">
             <model-viewer
                 id="main-viewer"
                 src="ashwagandha.glb"
@@ -110,164 +297,120 @@
                 shadow-softness="1"
                 environment-image="neutral"
                 exposure="1"
-                auto-rotate-delay="0"
                 class="w-full h-full outline-none"
                 alt="A 3D model of Ashwagandha">
             </model-viewer>
 
-            <!-- Tutorial Overlay (Fades in after load) -->
+            <!-- Tutorial Overlay -->
             <div id="tutorial-overlay" class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000">
-                <div class="bg-white/80 backdrop-blur-xl px-10 py-8 rounded-3xl shadow-2xl flex gap-12 border border-gray-200/50">
-                    
-                    <!-- Drag to Rotate Indicator -->
+                <div class="bg-white/85 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-2xl flex gap-10 border border-gray-200/50">
                     <div class="flex flex-col items-center">
-                        <div class="relative w-20 h-20 flex items-center justify-center mb-4 bg-gray-100 rounded-full">
-                            <div class="w-6 h-6 bg-black rounded-full absolute anim-swipe touch-indicator"></div>
+                        <div class="relative w-16 h-16 flex items-center justify-center mb-3 bg-gray-100 rounded-full">
+                            <div class="w-5 h-5 bg-black rounded-full absolute anim-swipe touch-indicator"></div>
                         </div>
-                        <span class="text-sm font-semibold text-gray-800 text-center tracking-tight">1 Finger<br><span class="text-gray-500 font-normal">Drag to Rotate</span></span>
+                        <span class="text-xs font-semibold text-gray-800 text-center">1 Finger<br><span class="text-gray-500 font-normal">Drag to Rotate</span></span>
                     </div>
-
-                    <!-- Pinch to Zoom Indicator -->
                     <div class="flex flex-col items-center">
-                        <div class="relative w-20 h-20 flex items-center justify-center mb-4 bg-gray-100 rounded-full">
-                            <div class="w-5 h-5 border-2 border-black rounded-full absolute anim-pinch-1 touch-indicator"></div>
-                            <div class="w-5 h-5 border-2 border-black rounded-full absolute anim-pinch-2 touch-indicator"></div>
+                        <div class="relative w-16 h-16 flex items-center justify-center mb-3 bg-gray-100 rounded-full">
+                            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6M7 10h6"></path>
+                            </svg>
                         </div>
-                        <span class="text-sm font-semibold text-gray-800 text-center tracking-tight">2 Fingers<br><span class="text-gray-500 font-normal">Pinch to Zoom</span></span>
+                        <span class="text-xs font-semibold text-gray-800 text-center">2 Fingers<br><span class="text-gray-500 font-normal">Pinch to Zoom</span></span>
                     </div>
-
                 </div>
             </div>
 
-            <!-- Floating Controls -->
-            <div class="absolute bottom-40 left-1/2 -translate-x-1/2 flex items-center bg-white/80 backdrop-blur-xl p-1.5 rounded-full shadow-lg border border-black/5 z-30 transition-transform hover:scale-105">
-                
-                <!-- Reset Button -->
-                <button id="reset-btn" class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full hover:bg-gray-100 transition-colors text-black active:bg-gray-200">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            <!-- Floating Icon Controls -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-5 z-30">
+                <button id="reset-btn" class="icon-btn relative" aria-label="Reset Position">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                     </svg>
-                    Reset
-                </button>
-                
-                <div class="w-[1px] h-6 bg-gray-300 mx-1"></div>
-                
-                <!-- Auto Rotate Button -->
-                <button id="auto-rotate-btn" class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 bg-transparent text-black hover:bg-gray-100 active:bg-gray-200">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
-                    </svg>
-                    Auto Rotate
+                    <span class="label">Reset</span>
                 </button>
 
+                <button id="auto-rotate-btn" class="icon-btn relative" aria-label="Auto Rotate">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 4v5h-.582m0 0a8.001 8.001 0 00-15.356 2m15.356-2H15M4 20v-5h.581m0 0a8.003 8.003 0 0015.357-2M4.581 15H9"/>
+                    </svg>
+                    <span class="label">Rotate</span>
+                </button>
             </div>
         </main>
 
-        <!-- Bottom Bar -->
-        <footer class="w-full glass absolute bottom-0 z-30 flex items-center justify-center pt-6 pb-12 sm:pb-8 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
-            <!-- Version text placed absolute to keep main content perfectly centered -->
-            <span class="absolute left-6 text-xs sm:text-sm font-medium text-gray-400 hidden sm:block">v1.0.0</span>
-            
-            <!-- Center Block with Glow -->
-            <div class="relative flex items-center gap-5 px-6 py-3">
-                <!-- Highlight Glow Effect Background -->
-                <div class="absolute inset-0 bg-white rounded-3xl blur-xl shadow-[0_0_40px_rgba(255,255,255,1)] -z-10"></div>
-                <div class="absolute inset-0 bg-gray-100 rounded-3xl blur-md opacity-50 -z-10"></div>
-                
-                <!-- Left: Profile Picture (Enlarged) -->
-                <img src="assets/haris-horizon.webp" alt="Haris Horizon" class="h-24 sm:h-28 rounded-2xl object-cover shadow-lg border-2 border-white z-10" style="aspect-ratio: 9/16;">
-                
-                <!-- Right: Name (Enlarged) -->
-                <span class="text-base sm:text-lg font-medium text-gray-600 text-left leading-tight z-10">
-                    Made by <br>
-                    <strong class="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent font-black text-2xl sm:text-3xl drop-shadow-sm">Horizon</strong>
-                </span>
-            </div>
+        <!-- ===== Bottom Footer ===== -->
+        <footer class="w-full bg-white/70 backdrop-blur-xl border-t border-black/5 z-30 py-3 px-6 flex items-center justify-between">
+            <span class="text-[10px] sm:text-xs font-semibold text-gray-500 tracking-wider uppercase">Ashwagandha · 3D Model</span>
+            <span class="text-[10px] sm:text-xs font-medium text-gray-400 tabular-nums">v1.0.0</span>
         </footer>
 
     </div>
 
-    <!-- Application Logic -->
+    <!-- ===== App Logic ===== -->
     <script>
-        const viewer = document.querySelector('#main-viewer');
-        const splashScreen = document.getElementById('splash-screen');
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const tutorialOverlay = document.getElementById('tutorial-overlay');
-        const autoRotateBtn = document.getElementById('auto-rotate-btn');
+    (() => {
+        const viewer = document.getElementById('main-viewer');
+        const splash = document.getElementById('splash-screen');
+        const bar = document.getElementById('progress-bar');
+        const text = document.getElementById('progress-text');
+        const tutorial = document.getElementById('tutorial-overlay');
+        const rotateBtn = document.getElementById('auto-rotate-btn');
         const resetBtn = document.getElementById('reset-btn');
 
-        // 1. Loading Progress and Splash Screen Management
-        viewer.addEventListener('progress', (event) => {
-            const progress = (event.detail.totalProgress * 100).toFixed(0);
-            progressBar.style.width = `${progress}%`;
-            progressText.innerText = `Loading Model ${progress}%`;
+        // Progress
+        viewer.addEventListener('progress', (e) => {
+            const p = Math.round(e.detail.totalProgress * 100);
+            bar.style.width = p + '%';
+            text.textContent = `Loading ${p}%`;
         });
 
+        // Loaded
         viewer.addEventListener('load', () => {
-            // Fade out splash screen
-            splashScreen.style.opacity = '0';
-            
+            splash.style.opacity = '0';
             setTimeout(() => {
-                splashScreen.style.display = 'none';
-                
-                // Fade in tutorial overlay
-                tutorialOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                tutorialOverlay.classList.add('opacity-100');
-                
-                // Hide tutorial function
-                const hideTutorial = () => {
-                    tutorialOverlay.classList.remove('opacity-100');
-                    tutorialOverlay.classList.add('opacity-0', 'pointer-events-none');
-                    // Clean up event listeners so it doesn't trigger repeatedly
-                    viewer.removeEventListener('pointerdown', hideTutorial);
-                    viewer.removeEventListener('camera-change', hideTutorial);
-                };
-                
-                // Hide after 6 seconds automatically, OR when user touches/interacts with the model
-                setTimeout(hideTutorial, 6000);
-                viewer.addEventListener('pointerdown', hideTutorial);
-                viewer.addEventListener('camera-change', hideTutorial);
+                splash.style.display = 'none';
+                tutorial.classList.remove('opacity-0');
+                tutorial.classList.add('opacity-100');
 
-            }, 700); // Wait for the fade out transition
+                const hide = () => {
+                    tutorial.classList.add('opacity-0', 'pointer-events-none');
+                    tutorial.classList.remove('opacity-100');
+                    viewer.removeEventListener('pointerdown', hide);
+                    viewer.removeEventListener('camera-change', hide);
+                };
+                setTimeout(hide, 5000);
+                viewer.addEventListener('pointerdown', hide);
+                viewer.addEventListener('camera-change', hide);
+            }, 700);
         });
 
-        // 2. Auto Rotate Premium Toggle functionality
-        let isAutoRotate = false;
-        autoRotateBtn.addEventListener('click', () => {
-            isAutoRotate = !isAutoRotate;
-            if (isAutoRotate) {
+        // Auto Rotate (instant)
+        let rotating = false;
+        rotateBtn.addEventListener('click', () => {
+            rotating = !rotating;
+            if (rotating) {
                 viewer.setAttribute('auto-rotate', '');
-                viewer.setAttribute('auto-rotate-delay', '0'); // Smooth instant rotation
-                viewer.setAttribute('rotation-per-second', '30deg'); // Smooth rotation speed
-                // Style as active (Black background, white text)
-                autoRotateBtn.classList.remove('bg-transparent', 'text-black', 'hover:bg-gray-100');
-                autoRotateBtn.classList.add('bg-black', 'text-white', 'shadow-md');
+                viewer.setAttribute('auto-rotate-delay', '0');
+                viewer.setAttribute('rotation-per-second', '30deg');
+                rotateBtn.classList.add('active');
             } else {
                 viewer.removeAttribute('auto-rotate');
-                // Style as inactive (Transparent background, black text)
-                autoRotateBtn.classList.remove('bg-black', 'text-white', 'shadow-md');
-                autoRotateBtn.classList.add('bg-transparent', 'text-black', 'hover:bg-gray-100');
+                rotateBtn.classList.remove('active');
             }
         });
 
-        // 3. Reset Model Position
+        // Reset (instant centering)
         resetBtn.addEventListener('click', () => {
-            // Setting camera orbit and target to auto forces the model to re-center dynamically
             viewer.cameraOrbit = 'auto auto auto';
             viewer.cameraTarget = 'auto auto auto';
-            viewer.fieldOfView = 'auto'; // Reset zoom level as well
-            
-            // Add a subtle click feedback animation
-            resetBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => { resetBtn.style.transform = 'scale(1)'; }, 150);
+            viewer.fieldOfView = 'auto';
+            viewer.jumpCameraToGoal && viewer.jumpCameraToGoal();
+            resetBtn.classList.remove('spin-once');
+            void resetBtn.offsetWidth; // restart anim
+            resetBtn.classList.add('spin-once');
         });
+    })();
     </script>
 </body>
 </html>
-
-
-
-
-
-```
