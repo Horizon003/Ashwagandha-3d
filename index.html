@@ -53,7 +53,7 @@ body {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   color: #fff;
   padding: 8px 16px;
   border-radius: 20px;
@@ -61,7 +61,18 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* ===== BOTTOM CONTROLS ===== */
+/* ===== INSTRUCTIONS ===== */
+.instructions {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #444;
+  animation: fade 1.5s ease;
+}
+
+/* ===== CONTROLS ===== */
 .controls {
   position: fixed;
   bottom: 25px;
@@ -72,30 +83,23 @@ body {
 }
 
 .btn {
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   color: #fff;
   padding: 10px 16px;
   border-radius: 20px;
   font-size: 12px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-/* ===== INSTRUCTIONS ===== */
-.instructions {
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  color: #333;
-  animation: fade 2s ease;
+.btn:hover {
+  background: #000;
 }
 
 @keyframes fade {
   from {opacity:0;}
   to {opacity:1;}
 }
-
 </style>
 </head>
 
@@ -113,7 +117,7 @@ body {
 <div class="topbar">Drag • Zoom • Rotate</div>
 
 <!-- INSTRUCTIONS -->
-<div class="instructions">Use fingers to explore the model</div>
+<div class="instructions">Use fingers to explore</div>
 
 <!-- MODEL -->
 <model-viewer 
@@ -121,8 +125,13 @@ body {
   src="ashwagandha.glb"
   camera-controls
   auto-rotate
-  style="width:100vw;height:100vh;"
-></model-viewer>
+  auto-rotate-delay="0"
+  rotation-per-second="20deg"
+  camera-orbit="0deg 75deg 2.5m"
+  camera-target="0m 0m 0m"
+  interaction-prompt="none"
+  style="width:100vw;height:100vh;">
+</model-viewer>
 
 <!-- CONTROLS -->
 <div class="controls">
@@ -134,27 +143,33 @@ body {
 const viewer = document.getElementById("model");
 const progress = document.getElementById("progress");
 
-// PROGRESS BAR
+// ===== PROGRESS BAR =====
 viewer.addEventListener("progress", (e) => {
   const percent = Math.round(e.detail.totalProgress * 100);
   progress.style.width = percent + "%";
 });
 
-// HIDE LOADER
+// ===== HIDE LOADER =====
 viewer.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("loader").style.display = "none";
-  }, 500);
+  }, 400);
 });
 
-// TOGGLE ROTATION
+// ===== FIXED AUTO ROTATE =====
 function toggleRotate() {
-  viewer.autoRotate = !viewer.autoRotate;
+  if (viewer.hasAttribute("auto-rotate")) {
+    viewer.removeAttribute("auto-rotate");
+  } else {
+    viewer.setAttribute("auto-rotate", "");
+  }
 }
 
-// RESET CAMERA
+// ===== FIXED RESET CAMERA =====
 function resetCam() {
-  viewer.cameraOrbit = "0deg 75deg 3m";
+  viewer.cameraOrbit = "0deg 75deg 2.5m";
+  viewer.cameraTarget = "0m 0m 0m";
+  viewer.jumpCameraToGoal(); // smooth snap fix
 }
 </script>
 
