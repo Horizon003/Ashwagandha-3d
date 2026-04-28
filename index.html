@@ -18,10 +18,10 @@
 
     <style>
         :root {
-            --titanium-1: #d8d8da;
-            --titanium-2: #b8b8bc;
-            --titanium-3: #9a9a9e;
-            --titanium-4: #6e6e72;
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-bg-strong: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.45);
+            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
         }
 
         html, body {
@@ -31,75 +31,99 @@
 
         model-viewer::part(default-progress-bar) { display: none; }
 
-        /* ===== iPhone Titanium Header ===== */
-        .titanium-bar {
+        /* ===== Animated colorful background (so glass actually looks glassy) ===== */
+        .app-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
             background:
-                radial-gradient(circle at 15% 50%, rgba(255,255,255,0.55) 0%, transparent 35%),
-                radial-gradient(circle at 85% 50%, rgba(255,255,255,0.4) 0%, transparent 40%),
-                linear-gradient(135deg, #c9c9cd 0%, #a8a8ac 25%, #d4d4d8 50%, #9e9ea2 75%, #bcbcc0 100%);
-            background-size: 100% 100%, 100% 100%, 200% 200%;
-            position: relative;
-            overflow: hidden;
+                radial-gradient(circle at 15% 15%, #cfe7ff 0%, transparent 45%),
+                radial-gradient(circle at 85% 20%, #ffd8ec 0%, transparent 45%),
+                radial-gradient(circle at 75% 85%, #d8f5e2 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, #ffe6c7 0%, transparent 45%),
+                linear-gradient(135deg, #f7f8fc 0%, #eef0f7 100%);
         }
-        /* Tiny "dots" / micro-noise for that brushed titanium feel */
-        .titanium-bar::before {
-            content: "";
+        .floating-orb {
             position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(rgba(255,255,255,0.6) 0.5px, transparent 0.6px),
-                radial-gradient(rgba(0,0,0,0.08) 0.5px, transparent 0.6px);
-            background-size: 4px 4px, 7px 7px;
-            background-position: 0 0, 2px 3px;
+            border-radius: 9999px;
+            filter: blur(70px);
             opacity: 0.55;
-            mix-blend-mode: overlay;
+            animation: orbFloat 12s ease-in-out infinite;
             pointer-events: none;
         }
-        .titanium-bar::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.12) 100%);
-            pointer-events: none;
+        .orb-1 { width: 320px; height: 320px; background: #b8dcff; top: 5%; left: -80px; animation-delay: 0s; }
+        .orb-2 { width: 260px; height: 260px; background: #ffc4dc; top: 30%; right: -60px; animation-delay: -4s; }
+        .orb-3 { width: 220px; height: 220px; background: #c9efd6; bottom: 8%; left: 30%; animation-delay: -7s; }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(40px,-30px) scale(1.12); }
         }
 
-        /* Apple-style title text */
-        .apple-title {
+        /* ===== GLASSMORPHISM CORE ===== */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(22px) saturate(180%);
+            -webkit-backdrop-filter: blur(22px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                0 8px 32px rgba(31, 38, 135, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+        .glass-strong {
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(28px) saturate(200%);
+            -webkit-backdrop-filter: blur(28px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow:
+                0 10px 36px rgba(31, 38, 135, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        /* ===== Header (white strip, black text, glass) ===== */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow:
+                0 4px 24px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        .header-title {
             font-weight: 800;
             letter-spacing: -0.03em;
-            background: linear-gradient(180deg, #0a0a0a 0%, #2a2a2a 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+            color: #000;
+        }
+        .header-sub {
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            color: #000;
+            opacity: 0.65;
         }
 
-        /* Profile Glow Ring */
-        .glow-ring {
+        /* ===== Big Prominent Profile Picture ===== */
+        .profile-wrap {
             position: relative;
             border-radius: 9999px;
-            padding: 2.5px;
-            background: conic-gradient(from 0deg, #fff, #b0b0b4, #fff, #8e8e92, #fff);
+            padding: 4px;
+            background: conic-gradient(from 0deg,
+                #ff9bd2, #a3d8ff, #b6f3c8, #ffd8a3, #ff9bd2);
             box-shadow:
-                0 0 0 1px rgba(0,0,0,0.08),
-                0 0 18px rgba(255,255,255,0.85),
-                0 0 32px rgba(180,180,190,0.55),
-                0 4px 14px rgba(0,0,0,0.18);
-            animation: ringSpin 6s linear infinite;
+                0 0 0 1px rgba(0,0,0,0.06),
+                0 0 24px rgba(255,255,255,0.9),
+                0 0 40px rgba(180,200,255,0.55),
+                0 8px 28px rgba(0,0,0,0.18);
+            animation: ringSpin 8s linear infinite;
         }
-        @keyframes ringSpin {
-            to { transform: rotate(360deg); }
-        }
-        .glow-ring img {
+        @keyframes ringSpin { to { transform: rotate(360deg); } }
+        .profile-wrap img {
             display: block;
             border-radius: 9999px;
             background: #fff;
-            transform: rotate(0deg);
-            animation: ringSpinReverse 6s linear infinite;
+            animation: ringSpinReverse 8s linear infinite;
+            border: 3px solid #fff;
         }
-        @keyframes ringSpinReverse {
-            to { transform: rotate(-360deg); }
-        }
+        @keyframes ringSpinReverse { to { transform: rotate(-360deg); } }
 
         /* ===== Splash ===== */
         .splash-bg {
@@ -124,9 +148,7 @@
             50% { transform: translate(30px,-20px) scale(1.1); }
         }
 
-        .splash-logo {
-            animation: logoBounce 2s ease-in-out infinite;
-        }
+        .splash-logo { animation: logoBounce 2s ease-in-out infinite; }
         @keyframes logoBounce {
             0%, 100% { transform: translateY(0) rotate(-3deg); }
             50% { transform: translateY(-10px) rotate(3deg); }
@@ -161,41 +183,41 @@
             40% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* ===== Floating Icon Buttons ===== */
+        /* ===== Floating Icon Buttons (glass) ===== */
         .icon-btn {
-            width: 52px; height: 52px;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0,0,0,0.06);
+            width: 56px; height: 56px;
+            background: rgba(255,255,255,0.45);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.55);
             box-shadow:
-                0 4px 14px rgba(0,0,0,0.10),
-                0 1px 2px rgba(0,0,0,0.06),
-                inset 0 1px 0 rgba(255,255,255,0.9);
+                0 8px 24px rgba(31,38,135,0.18),
+                inset 0 1px 0 rgba(255,255,255,0.85);
             border-radius: 9999px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #1a1a1a;
+            color: #0a0a0a;
         }
-        .icon-btn:hover { transform: scale(1.08); }
+        .icon-btn:hover { transform: scale(1.08); background: rgba(255,255,255,0.65); }
         .icon-btn:active { transform: scale(0.92); }
         .icon-btn.active {
-            background: #1a1a1a;
+            background: rgba(20,20,20,0.78);
             color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
             box-shadow:
-                0 4px 18px rgba(0,0,0,0.35),
-                0 0 0 4px rgba(0,0,0,0.06),
-                inset 0 1px 0 rgba(255,255,255,0.15);
+                0 8px 24px rgba(0,0,0,0.35),
+                0 0 0 4px rgba(255,255,255,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.2);
         }
         .icon-btn .label {
             position: absolute;
             bottom: -22px;
             font-size: 10px;
-            font-weight: 600;
-            color: #555;
-            letter-spacing: 0.02em;
+            font-weight: 700;
+            color: #111;
+            letter-spacing: 0.05em;
             white-space: nowrap;
             opacity: 0.85;
         }
@@ -223,28 +245,42 @@
         }
         .anim-swipe { animation: swipeAnim 2.5s ease-in-out infinite; }
 
-        /* Subtle floor under model */
+        /* Model stage – transparent so glass background shows through */
         .model-stage {
             background:
-                radial-gradient(ellipse at center 80%, rgba(0,0,0,0.06) 0%, transparent 60%),
-                linear-gradient(180deg, #f5f5f7 0%, #ececef 100%);
+                radial-gradient(ellipse at center 80%, rgba(0,0,0,0.06) 0%, transparent 60%);
+        }
+
+        /* Footer (glass, white-ish, black text) */
+        .glass-footer {
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-top: 1px solid rgba(255,255,255,0.55);
+            box-shadow:
+                0 -4px 20px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.85);
         }
     </style>
 </head>
-<body class="overflow-hidden bg-[#f5f5f7] text-black selection:bg-gray-300">
+<body class="overflow-hidden text-black selection:bg-gray-300">
+
+    <!-- Animated colorful glass background -->
+    <div class="app-bg">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+    </div>
 
     <!-- ===== Splash Screen ===== -->
     <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center splash-bg transition-opacity duration-700 overflow-hidden">
-        <!-- Funky floating blobs -->
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
 
-        <!-- Apple-style logo -->
         <div class="relative z-10 flex flex-col items-center">
             <div class="splash-logo mb-6">
                 <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-white to-gray-200 shadow-[0_10px_40px_rgba(0,0,0,0.15)] flex items-center justify-center border border-white">
-                    <!-- Leaf/plant icon -->
                     <svg class="w-10 h-10 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14v8"></path>
@@ -252,37 +288,35 @@
                 </div>
             </div>
 
-            <h1 class="apple-title text-3xl mb-1">Ashwagandha 3D</h1>
-            <p class="text-xs text-gray-500 font-medium tracking-wide mb-8">EXPLORE • ROTATE • DISCOVER</p>
+            <h1 class="text-3xl mb-1 font-extrabold tracking-tight text-black">Ashwagandha 3D</h1>
+            <p class="text-xs text-gray-600 font-semibold tracking-wide mb-8">EXPLORE • ROTATE • DISCOVER</p>
 
-            <!-- Progress -->
             <div class="w-64 h-[3px] progress-track rounded-full overflow-hidden">
                 <div id="progress-bar" class="h-full progress-fill rounded-full" style="width:0%"></div>
             </div>
             <div class="flex items-center gap-2 mt-4">
-                <span id="progress-text" class="text-xs font-medium text-gray-600 tabular-nums">Loading 0%</span>
+                <span id="progress-text" class="text-xs font-medium text-gray-700 tabular-nums">Loading 0%</span>
                 <span class="dot-loader"><span></span><span></span><span></span></span>
             </div>
         </div>
 
-        <!-- Splash footer -->
-        <div class="absolute bottom-6 text-[10px] text-gray-400 font-medium tracking-widest uppercase">Made by Horizon</div>
+        <div class="absolute bottom-6 text-[10px] text-gray-500 font-semibold tracking-widest uppercase">Made by Horizon</div>
     </div>
 
     <!-- ===== Main App ===== -->
-    <div class="h-screen w-full flex flex-col relative">
+    <div class="h-screen w-full flex flex-col relative z-10">
 
-        <!-- ===== Titanium Header: Made by Horizon ===== -->
-        <header class="titanium-bar w-full z-30 flex items-center justify-center gap-4 px-4 py-3 sm:py-4 border-b border-black/10 shadow-sm">
-            <!-- Profile Picture with Glow Ring -->
-            <div class="glow-ring relative z-10 shrink-0">
+        <!-- ===== Glass Header: White Strip + Black Text + BIG Profile ===== -->
+        <header class="glass-header w-full z-30 flex items-center justify-center gap-5 px-5 py-4 sm:py-5">
+            <!-- BIG, prominent profile picture -->
+            <div class="profile-wrap shrink-0">
                 <img src="assets/haris-horizon.webp" alt="Haris Horizon"
-                     class="w-12 h-12 sm:w-14 sm:h-14 object-cover">
+                     class="w-20 h-20 sm:w-24 sm:h-24 object-cover">
             </div>
             <!-- Title -->
-            <div class="relative z-10 flex flex-col leading-tight">
-                <span class="text-[10px] sm:text-xs font-medium text-gray-700 tracking-[0.18em] uppercase">Made by</span>
-                <span class="apple-title text-2xl sm:text-3xl">Horizon</span>
+            <div class="flex flex-col leading-tight">
+                <span class="header-sub text-[10px] sm:text-[11px] uppercase">Made by</span>
+                <span class="header-title text-3xl sm:text-4xl">Horizon</span>
             </div>
         </header>
 
@@ -297,31 +331,32 @@
                 shadow-softness="1"
                 environment-image="neutral"
                 exposure="1"
+                style="background-color: transparent;"
                 class="w-full h-full outline-none"
                 alt="A 3D model of Ashwagandha">
             </model-viewer>
 
-            <!-- Tutorial Overlay -->
+            <!-- Tutorial Overlay (glass) -->
             <div id="tutorial-overlay" class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000">
-                <div class="bg-white/85 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-2xl flex gap-10 border border-gray-200/50">
+                <div class="glass-strong px-8 py-6 rounded-3xl flex gap-10">
                     <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center mb-3 bg-gray-100 rounded-full">
+                        <div class="relative w-16 h-16 flex items-center justify-center mb-3 bg-white/50 backdrop-blur-md rounded-full border border-white/60">
                             <div class="w-5 h-5 bg-black rounded-full absolute anim-swipe touch-indicator"></div>
                         </div>
-                        <span class="text-xs font-semibold text-gray-800 text-center">1 Finger<br><span class="text-gray-500 font-normal">Drag to Rotate</span></span>
+                        <span class="text-xs font-semibold text-black text-center">1 Finger<br><span class="text-gray-600 font-normal">Drag to Rotate</span></span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center mb-3 bg-gray-100 rounded-full">
+                        <div class="relative w-16 h-16 flex items-center justify-center mb-3 bg-white/50 backdrop-blur-md rounded-full border border-white/60">
                             <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6M7 10h6"></path>
                             </svg>
                         </div>
-                        <span class="text-xs font-semibold text-gray-800 text-center">2 Fingers<br><span class="text-gray-500 font-normal">Pinch to Zoom</span></span>
+                        <span class="text-xs font-semibold text-black text-center">2 Fingers<br><span class="text-gray-600 font-normal">Pinch to Zoom</span></span>
                     </div>
                 </div>
             </div>
 
-            <!-- Floating Icon Controls -->
+            <!-- Floating Glass Icon Controls -->
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-5 z-30">
                 <button id="reset-btn" class="icon-btn relative" aria-label="Reset Position">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
@@ -339,10 +374,10 @@
             </div>
         </main>
 
-        <!-- ===== Bottom Footer ===== -->
-        <footer class="w-full bg-white/70 backdrop-blur-xl border-t border-black/5 z-30 py-3 px-6 flex items-center justify-between">
-            <span class="text-[10px] sm:text-xs font-semibold text-gray-500 tracking-wider uppercase">Ashwagandha · 3D Model</span>
-            <span class="text-[10px] sm:text-xs font-medium text-gray-400 tabular-nums">v1.0.0</span>
+        <!-- ===== Glass Footer ===== -->
+        <footer class="glass-footer w-full z-30 py-3 px-6 flex items-center justify-between">
+            <span class="text-[10px] sm:text-xs font-bold text-black tracking-wider uppercase">Ashwagandha · 3D Model</span>
+            <span class="text-[10px] sm:text-xs font-semibold text-gray-700 tabular-nums">v1.0.0</span>
         </footer>
 
     </div>
@@ -358,14 +393,12 @@
         const rotateBtn = document.getElementById('auto-rotate-btn');
         const resetBtn = document.getElementById('reset-btn');
 
-        // Progress
         viewer.addEventListener('progress', (e) => {
             const p = Math.round(e.detail.totalProgress * 100);
             bar.style.width = p + '%';
             text.textContent = `Loading ${p}%`;
         });
 
-        // Loaded
         viewer.addEventListener('load', () => {
             splash.style.opacity = '0';
             setTimeout(() => {
@@ -385,7 +418,6 @@
             }, 700);
         });
 
-        // Auto Rotate (instant)
         let rotating = false;
         rotateBtn.addEventListener('click', () => {
             rotating = !rotating;
@@ -400,14 +432,13 @@
             }
         });
 
-        // Reset (instant centering)
         resetBtn.addEventListener('click', () => {
             viewer.cameraOrbit = 'auto auto auto';
             viewer.cameraTarget = 'auto auto auto';
             viewer.fieldOfView = 'auto';
             viewer.jumpCameraToGoal && viewer.jumpCameraToGoal();
             resetBtn.classList.remove('spin-once');
-            void resetBtn.offsetWidth; // restart anim
+            void resetBtn.offsetWidth;
             resetBtn.classList.add('spin-once');
         });
     })();
