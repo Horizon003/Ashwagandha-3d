@@ -3,154 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashwagandha 3D Viewer</title>
+<title>3D Viewer</title>
 
 <style>
-  body {
-    margin: 0;
-    background: #ffffff;
-    overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  canvas {
-    display: block;
-  }
-
-  /* Loader */
-  .loader {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 14px;
-    color: #666;
-    letter-spacing: 1px;
-  }
-
-  /* Top Bar */
-  .topbar {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    color: #333;
-  }
-
-  /* Button */
-  .btn {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #111;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .btn:hover {
-    background: #333;
-  }
+body { margin:0; background:#fff; overflow:hidden; }
+.loader {
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  color:#555;
+}
 </style>
 </head>
+
 <body>
 
 <div class="loader">Loading Model...</div>
-<div class="topbar">Ashwagandha • 3D View</div>
-<div class="btn" onclick="resetCamera()">Reset View</div>
 
-<script type="module">
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
-import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.158/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.158/examples/jsm/controls/OrbitControls.js";
+<!-- MODEL VIEWER (NO CDN ISSUES) -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-let camera, scene, renderer, controls;
-
-// SCENE
-scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
-
-// CAMERA
-camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
-camera.position.set(0, 1.2, 3);
-
-// RENDERER (optimized)
-renderer = new THREE.WebGLRenderer({
-  antialias: false,
-  powerPreference: "high-performance"
-});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-// CONTROLS (smooth)
-controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
-controls.enablePan = false;
-controls.minDistance = 1.5;
-controls.maxDistance = 5;
-
-// LIGHTING (premium feel but lightweight)
-scene.add(new THREE.HemisphereLight(0xffffff, 0xeeeeee, 1));
-
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(3, 5, 3);
-scene.add(dirLight);
-
-// SOFT SHADOW PLANE (fake shadow look)
-const plane = new THREE.Mesh(
-  new THREE.PlaneGeometry(10,10),
-  new THREE.MeshBasicMaterial({ color: 0xf5f5f5 })
-);
-plane.rotation.x = -Math.PI / 2;
-plane.position.y = -0.5;
-scene.add(plane);
-
-// LOAD MODEL
-const loader = new GLTFLoader();
-loader.load("./ashwagandha.glb", (gltf) => {
-  const model = gltf.scene;
-
-  // CENTER MODEL
-  const box = new THREE.Box3().setFromObject(model);
-  const center = box.getCenter(new THREE.Vector3());
-  model.position.sub(center);
-
-  scene.add(model);
-  document.querySelector(".loader").style.display = "none";
-});
-
-// ANIMATION LOOP
-function animate() {
-  requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
-}
-animate();
-
-// RESET BUTTON
-window.resetCamera = () => {
-  camera.position.set(0, 1.2, 3);
-  controls.update();
-};
-
-// RESPONSIVE
-window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-</script>
+<model-viewer 
+  src="ashwagandha.glb"
+  camera-controls
+  auto-rotate
+  disable-zoom="false"
+  style="width:100vw;height:100vh;"
+  onload="document.querySelector('.loader').style.display='none'">
+</model-viewer>
 
 </body>
 </html>
