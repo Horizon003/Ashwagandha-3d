@@ -1,177 +1,248 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashwagandha 3D</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ashwagandha 3D | Haris (Horizon)</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        /* Hide Default Progress Bar of Model Viewer */
+        model-viewer::part(default-progress-bar) {
+            display: none;
+        }
 
-<style>
-body {
-  margin: 0;
-  background: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
+        /* Apple Style Background */
+        .apple-bg {
+            background-color: #f5f5f7;
+        }
 
-/* ===== SPLASH LOADER ===== */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
 
-.logo {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #111;
-}
+        /* --- Tutorial Animations --- */
+        .touch-indicator {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+            animation: pulse-ring 2s infinite;
+        }
 
-.bar {
-  width: 180px;
-  height: 4px;
-  background: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-}
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+        }
 
-.progress {
-  height: 100%;
-  width: 0%;
-  background: #111;
-  transition: width 0.3s;
-}
+        /* Drag / Swipe Animation */
+        @keyframes swipeAnim {
+            0% { transform: translateX(-20px); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(-20px); }
+        }
+        .anim-swipe {
+            animation: swipeAnim 2.5s ease-in-out infinite;
+        }
 
-/* ===== TOP UI ===== */
-.topbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.75);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  backdrop-filter: blur(10px);
-}
-
-/* ===== INSTRUCTIONS ===== */
-.instructions {
-  position: fixed;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  color: #444;
-  animation: fade 1.5s ease;
-}
-
-/* ===== CONTROLS ===== */
-.controls {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  background: #000;
-}
-
-@keyframes fade {
-  from {opacity:0;}
-  to {opacity:1;}
-}
-</style>
+        /* Pinch Animation */
+        @keyframes pinchTop {
+            0%, 100% { transform: translate(-15px, -15px); }
+            50% { transform: translate(5px, 5px); }
+        }
+        @keyframes pinchBottom {
+            0%, 100% { transform: translate(15px, 15px); }
+            50% { transform: translate(-5px, -5px); }
+        }
+        .anim-pinch-1 { animation: pinchTop 2.5s ease-in-out infinite; }
+        .anim-pinch-2 { animation: pinchBottom 2.5s ease-in-out infinite; }
+    </style>
 </head>
+<body class="overflow-hidden bg-black text-black font-sans selection:bg-gray-300 antialiased">
 
-<body>
+    <!-- Splash Screen with Loading Bar -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white transition-opacity duration-700">
+        <div class="mb-8 flex flex-col items-center">
+            <!-- Sleek Icon -->
+            <svg class="w-16 h-16 mb-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
+            </svg>
+            <h1 class="text-2xl font-semibold tracking-tight text-black">Ashwagandha 3D</h1>
+            <p class="text-sm text-gray-500 mt-2" id="progress-text">Loading Model 0%</p>
+        </div>
+        <!-- Progress Bar -->
+        <div class="w-64 h-[2px] bg-gray-200 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-black w-0 transition-all duration-300 ease-out"></div>
+        </div>
+    </div>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="logo">Ashwagandha 3D</div>
-  <div class="bar">
-    <div class="progress" id="progress"></div>
-  </div>
-</div>
+    <!-- Main Application Area -->
+    <div class="h-screen w-full flex flex-col apple-bg relative">
+        
+        <!-- Top Bar -->
+        <header class="h-16 w-full glass absolute top-0 z-30 flex items-center justify-center px-6">
+            <h2 class="text-lg font-medium tracking-wide">3D Model Overview</h2>
+        </header>
 
-<!-- TOP -->
-<div class="topbar">Drag • Zoom • Rotate</div>
+        <!-- 3D Model Viewer Container -->
+        <main class="flex-grow w-full relative">
+            <model-viewer
+                id="main-viewer"
+                src="ashwagandha.glb"
+                camera-controls
+                touch-action="pan-y"
+                shadow-intensity="1.5"
+                shadow-softness="1"
+                environment-image="neutral"
+                exposure="1"
+                class="w-full h-full outline-none"
+                alt="A 3D model of Ashwagandha">
+            </model-viewer>
 
-<!-- INSTRUCTIONS -->
-<div class="instructions">Use fingers to explore</div>
+            <!-- Tutorial Overlay (Fades in after load) -->
+            <div id="tutorial-overlay" class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000">
+                <div class="bg-white/80 backdrop-blur-xl px-10 py-8 rounded-3xl shadow-2xl flex gap-12 border border-gray-200/50">
+                    
+                    <!-- Drag to Rotate Indicator -->
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-20 h-20 flex items-center justify-center mb-4 bg-gray-100 rounded-full">
+                            <div class="w-6 h-6 bg-black rounded-full absolute anim-swipe touch-indicator"></div>
+                        </div>
+                        <span class="text-sm font-semibold text-gray-800 text-center tracking-tight">1 Finger<br><span class="text-gray-500 font-normal">Drag to Rotate</span></span>
+                    </div>
 
-<!-- MODEL -->
-<model-viewer 
-  id="model"
-  src="ashwagandha.glb"
-  camera-controls
-  auto-rotate
-  auto-rotate-delay="0"
-  rotation-per-second="20deg"
-  camera-orbit="0deg 75deg 2.5m"
-  camera-target="0m 0m 0m"
-  interaction-prompt="none"
-  style="width:100vw;height:100vh;">
-</model-viewer>
+                    <!-- Pinch to Zoom Indicator -->
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-20 h-20 flex items-center justify-center mb-4 bg-gray-100 rounded-full">
+                            <div class="w-5 h-5 border-2 border-black rounded-full absolute anim-pinch-1 touch-indicator"></div>
+                            <div class="w-5 h-5 border-2 border-black rounded-full absolute anim-pinch-2 touch-indicator"></div>
+                        </div>
+                        <span class="text-sm font-semibold text-gray-800 text-center tracking-tight">2 Fingers<br><span class="text-gray-500 font-normal">Pinch to Zoom</span></span>
+                    </div>
 
-<!-- CONTROLS -->
-<div class="controls">
-  <div class="btn" onclick="toggleRotate()">Auto Rotate</div>
-  <div class="btn" onclick="resetCam()">Reset</div>
-</div>
+                </div>
+            </div>
 
-<script>
-const viewer = document.getElementById("model");
-const progress = document.getElementById("progress");
+            <!-- Floating Controls -->
+            <div class="absolute bottom-24 left-1/2 -translate-x-1/2 flex items-center bg-white/80 backdrop-blur-xl p-1.5 rounded-full shadow-lg border border-black/5 z-30 transition-transform hover:scale-105">
+                
+                <!-- Reset Button -->
+                <button id="reset-btn" class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full hover:bg-gray-100 transition-colors text-black active:bg-gray-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Reset
+                </button>
+                
+                <div class="w-[1px] h-6 bg-gray-300 mx-1"></div>
+                
+                <!-- Auto Rotate Button -->
+                <button id="auto-rotate-btn" class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 bg-transparent text-black hover:bg-gray-100 active:bg-gray-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
+                    </svg>
+                    Auto Rotate
+                </button>
 
-// ===== PROGRESS BAR =====
-viewer.addEventListener("progress", (e) => {
-  const percent = Math.round(e.detail.totalProgress * 100);
-  progress.style.width = percent + "%";
-});
+            </div>
+        </main>
 
-// ===== HIDE LOADER =====
-viewer.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-  }, 400);
-});
+        <!-- Bottom Bar -->
+        <footer class="h-16 w-full glass absolute bottom-0 z-30 flex items-center justify-between px-6 sm:px-10">
+            <span class="text-xs sm:text-sm font-medium text-gray-500">v1.0.0</span>
+            <span class="text-xs sm:text-sm font-medium text-gray-700">
+                Made by 
+                <strong class="bg-gradient-to-r from-gray-900 to-gray-500 bg-clip-text text-transparent font-bold">Haris (Horizon)</strong>
+            </span>
+        </footer>
 
-// ===== FIXED AUTO ROTATE =====
-function toggleRotate() {
-  if (viewer.hasAttribute("auto-rotate")) {
-    viewer.removeAttribute("auto-rotate");
-  } else {
-    viewer.setAttribute("auto-rotate", "");
-  }
-}
+    </div>
 
-// ===== FIXED RESET CAMERA =====
-function resetCam() {
-  viewer.cameraOrbit = "0deg 75deg 2.5m";
-  viewer.cameraTarget = "0m 0m 0m";
-  viewer.jumpCameraToGoal(); // smooth snap fix
-}
-</script>
+    <!-- Application Logic -->
+    <script>
+        const viewer = document.querySelector('#main-viewer');
+        const splashScreen = document.getElementById('splash-screen');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const tutorialOverlay = document.getElementById('tutorial-overlay');
+        const autoRotateBtn = document.getElementById('auto-rotate-btn');
+        const resetBtn = document.getElementById('reset-btn');
 
+        // 1. Loading Progress and Splash Screen Management
+        viewer.addEventListener('progress', (event) => {
+            const progress = (event.detail.totalProgress * 100).toFixed(0);
+            progressBar.style.width = `${progress}%`;
+            progressText.innerText = `Loading Model ${progress}%`;
+        });
+
+        viewer.addEventListener('load', () => {
+            // Fade out splash screen
+            splashScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                splashScreen.style.display = 'none';
+                
+                // Fade in tutorial overlay
+                tutorialOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                tutorialOverlay.classList.add('opacity-100');
+                
+                // Hide tutorial function
+                const hideTutorial = () => {
+                    tutorialOverlay.classList.remove('opacity-100');
+                    tutorialOverlay.classList.add('opacity-0', 'pointer-events-none');
+                    // Clean up event listeners so it doesn't trigger repeatedly
+                    viewer.removeEventListener('pointerdown', hideTutorial);
+                    viewer.removeEventListener('camera-change', hideTutorial);
+                };
+                
+                // Hide after 6 seconds automatically, OR when user touches/interacts with the model
+                setTimeout(hideTutorial, 6000);
+                viewer.addEventListener('pointerdown', hideTutorial);
+                viewer.addEventListener('camera-change', hideTutorial);
+
+            }, 700); // Wait for the fade out transition
+        });
+
+        // 2. Auto Rotate Premium Toggle functionality
+        let isAutoRotate = false;
+        autoRotateBtn.addEventListener('click', () => {
+            isAutoRotate = !isAutoRotate;
+            if (isAutoRotate) {
+                viewer.setAttribute('auto-rotate', '');
+                viewer.setAttribute('rotation-per-second', '30deg'); // Smooth rotation speed
+                // Style as active (Black background, white text)
+                autoRotateBtn.classList.remove('bg-transparent', 'text-black', 'hover:bg-gray-100');
+                autoRotateBtn.classList.add('bg-black', 'text-white', 'shadow-md');
+            } else {
+                viewer.removeAttribute('auto-rotate');
+                // Style as inactive (Transparent background, black text)
+                autoRotateBtn.classList.remove('bg-black', 'text-white', 'shadow-md');
+                autoRotateBtn.classList.add('bg-transparent', 'text-black', 'hover:bg-gray-100');
+            }
+        });
+
+        // 3. Reset Model Position
+        resetBtn.addEventListener('click', () => {
+            // Setting camera orbit and target to auto forces the model to re-center dynamically
+            viewer.cameraOrbit = 'auto auto auto';
+            viewer.cameraTarget = 'auto auto auto';
+            viewer.fieldOfView = 'auto'; // Reset zoom level as well
+            
+            // Add a subtle click feedback animation
+            resetBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => { resetBtn.style.transform = 'scale(1)'; }, 150);
+        });
+    </script>
 </body>
 </html>
+
+```
