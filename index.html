@@ -241,56 +241,70 @@
             border: 1px solid rgba(255, 214, 107, 0.7);
         }
 
-        /* ===== Splash Screen (parchment + botanical) ===== */
+        /* ===== Splash Screen (deep emerald + gold heritage) ===== */
         .splash-bg {
             background:
-                radial-gradient(circle at 20% 20%, rgba(255, 250, 235, 1) 0%, transparent 45%),
-                radial-gradient(circle at 80% 80%, rgba(244, 236, 216, 1) 0%, transparent 50%),
-                linear-gradient(135deg, #FBF6EC 0%, #F0E6CD 100%);
+                radial-gradient(circle at 18% 14%, rgba(58, 107, 67, 0.55) 0%, transparent 50%),
+                radial-gradient(circle at 84% 18%, rgba(212, 164, 69, 0.35) 0%, transparent 48%),
+                radial-gradient(circle at 78% 84%, rgba(176, 134, 96, 0.40) 0%, transparent 52%),
+                radial-gradient(circle at 14% 88%, rgba(31, 74, 44, 0.55) 0%, transparent 50%),
+                linear-gradient(160deg, #0F2A1A 0%, #1F4A2C 35%, #2A5A33 60%, #6B4A2B 100%);
+        }
+        .splash-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255, 235, 180, 0.025) 0 1px, transparent 1px 4px),
+                repeating-linear-gradient(90deg, rgba(255, 235, 180, 0.018) 0 1px, transparent 1px 4px);
+            pointer-events: none;
+            mix-blend-mode: overlay;
         }
         .blob {
             position: absolute;
             border-radius: 9999px;
-            filter: blur(60px);
-            opacity: 0.5;
-            animation: blobFloat 9s ease-in-out infinite;
+            filter: blur(70px);
+            opacity: 0.55;
+            animation: blobFloat 11s ease-in-out infinite;
         }
-        .blob-1 { width: 280px; height: 280px; background: #2E8B4A; top: 8%; left: -60px; animation-delay: 0s; }
-        .blob-2 { width: 230px; height: 230px; background: #E6B23A; bottom: 10%; right: -40px; animation-delay: -3s; }
-        .blob-3 { width: 200px; height: 200px; background: #0F4C2A; top: 45%; left: 50%; animation-delay: -5s; }
+        .blob-1 { width: 320px; height: 320px; background: #3A6B43; top: 6%; left: -80px; animation-delay: 0s; }
+        .blob-2 { width: 260px; height: 260px; background: #EFC974; bottom: 8%; right: -50px; animation-delay: -3s; }
+        .blob-3 { width: 220px; height: 220px; background: #B08660; top: 42%; left: 55%; animation-delay: -5s; }
         @keyframes blobFloat {
             0%, 100% { transform: translate(0,0) scale(1); }
             50% { transform: translate(30px,-20px) scale(1.1); }
         }
 
         .splash-emblem {
-            animation: emblemFloat 3s ease-in-out infinite;
-            filter: drop-shadow(0 12px 28px rgba(15, 76, 42, 0.35));
+            animation: emblemFloat 3.4s ease-in-out infinite;
+            filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.45));
         }
         @keyframes emblemFloat {
             0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
 
         .emblem-disc {
             background:
-                radial-gradient(circle at 30% 25%, #FFD66B 0%, #E6B23A 40%, #C9952A 100%);
+                radial-gradient(circle at 30% 25%, #FFE9A8 0%, #EFC974 35%, #C9952A 75%, #8C6914 100%);
             box-shadow:
-                inset 0 2px 4px rgba(255, 255, 255, 0.6),
-                inset 0 -3px 8px rgba(110, 70, 0, 0.35),
-                0 12px 30px rgba(201, 149, 42, 0.45);
-            border: 2px solid #FFD66B;
+                inset 0 2px 4px rgba(255, 255, 255, 0.7),
+                inset 0 -4px 10px rgba(80, 50, 0, 0.45),
+                0 14px 36px rgba(201, 149, 42, 0.55),
+                0 0 60px rgba(239, 201, 116, 0.35);
+            border: 2px solid #FFE9A8;
         }
 
         .progress-track {
-            background: rgba(15, 76, 42, 0.10);
-            box-shadow: inset 0 1px 2px rgba(15, 76, 42, 0.18);
+            background: rgba(248, 241, 226, 0.18);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(239, 201, 116, 0.2);
         }
         .progress-fill {
-            background: linear-gradient(90deg, #C9952A 0%, #FFD66B 50%, #C9952A 100%);
+            background: linear-gradient(90deg, #B8862B 0%, #EFC974 35%, #FFE9A8 50%, #EFC974 65%, #B8862B 100%);
             background-size: 200% 100%;
             animation: shimmer 1.8s linear infinite;
-            box-shadow: 0 0 12px rgba(255, 214, 107, 0.6);
+            box-shadow: 0 0 14px rgba(255, 214, 107, 0.75);
         }
         @keyframes shimmer {
             0% { background-position: 200% 0; }
@@ -300,15 +314,107 @@
         .dot-loader span {
             display: inline-block;
             width: 6px; height: 6px; margin: 0 2px;
-            background: var(--forest-deep);
+            background: var(--gold-bright);
             border-radius: 9999px;
             animation: dotPulse 1.2s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(239, 201, 116, 0.6);
         }
         .dot-loader span:nth-child(2) { animation-delay: 0.15s; }
         .dot-loader span:nth-child(3) { animation-delay: 0.3s; }
         @keyframes dotPulse {
             0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
             40% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ===== Splash credit (Made by Horizon → Haris Aslam → DP 2420) ===== */
+        .credit-stage {
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 22px;
+        }
+        .credit-slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(14px) scale(0.96);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+        .credit-slide.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .credit-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 9.5px;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: rgba(239, 201, 116, 0.78);
+        }
+        .credit-main {
+            font-family: 'Fraunces', serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 0.01em;
+            color: #FFE9A8;
+            text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+        }
+        .credit-main.italic {
+            font-style: italic;
+        }
+        .credit-rule {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold-warm);
+        }
+        .credit-rule::before, .credit-rule::after {
+            content: '';
+            width: 24px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+        }
+        .credit-photo {
+            width: 86px;
+            height: 86px;
+            border-radius: 9999px;
+            object-fit: cover;
+            border: 3px solid #FFE9A8;
+            background: var(--cream);
+            box-shadow:
+                0 0 0 1px rgba(239, 201, 116, 0.6),
+                0 0 28px rgba(239, 201, 116, 0.55),
+                0 14px 30px rgba(0, 0, 0, 0.45);
+            animation: photoGlow 2.4s ease-in-out infinite;
+        }
+        @keyframes photoGlow {
+            0%, 100% { box-shadow: 0 0 0 1px rgba(239, 201, 116, 0.6), 0 0 24px rgba(239, 201, 116, 0.45), 0 14px 30px rgba(0,0,0,0.45); }
+            50%      { box-shadow: 0 0 0 1px rgba(239, 201, 116, 0.85), 0 0 38px rgba(239, 201, 116, 0.7), 0 14px 30px rgba(0,0,0,0.45); }
+        }
+        .credit-sub {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: #F8F1E2;
+        }
+        .credit-dp {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.36em;
+            color: var(--berry-soft);
+            text-transform: uppercase;
         }
 
         /* ===== Floating Botanical Icon Buttons ===== */
@@ -536,24 +642,44 @@
                 Pharmacognosy · Heritage
             </span>
 
-            <h1 class="font-fraunces text-4xl md:text-5xl mb-2 font-bold tracking-tight" style="color: var(--leaf-deep);">Ashwagandha 3D</h1>
+            <h1 class="font-fraunces text-4xl md:text-5xl mb-2 font-bold tracking-tight" style="color: #FFE9A8; text-shadow: 0 2px 18px rgba(0,0,0,0.5);">Ashwagandha 3D</h1>
 
             <div class="laurel-divider mb-3">
-                <span class="font-cinzel text-[11px] tracking-[0.4em]" style="color: var(--berry-red);">WITHANIA SOMNIFERA</span>
+                <span class="font-cinzel text-[11px] tracking-[0.4em]" style="color: var(--berry-soft);">WITHANIA SOMNIFERA</span>
             </div>
 
-            <p class="font-jost text-[11px] font-semibold tracking-[0.32em] uppercase mb-9" style="color: var(--leaf-mid);">Explore · Rotate · Discover</p>
+            <p class="font-jost text-[11px] font-semibold tracking-[0.32em] uppercase mb-7" style="color: rgba(248, 241, 226, 0.78);">Explore · Rotate · Discover</p>
 
             <div class="w-72 h-[3px] progress-track rounded-full overflow-hidden">
                 <div id="progress-bar" class="h-full progress-fill rounded-full" style="width:0%"></div>
             </div>
             <div class="flex items-center gap-2 mt-4">
-                <span id="progress-text" class="font-jost text-xs font-medium tabular-nums" style="color: var(--leaf-deep);">Loading 0%</span>
+                <span id="progress-text" class="font-jost text-xs font-medium tabular-nums" style="color: var(--gold-bright);">Loading 0%</span>
                 <span class="dot-loader"><span></span><span></span><span></span></span>
+            </div>
+
+            <!-- Animated credit stage: Made by Horizon → Haris Aslam (with photo) → DP 2420 -->
+            <div class="credit-stage" id="credit-stage">
+                <!-- Slide 1: Made by Horizon -->
+                <div class="credit-slide" data-slide="1">
+                    <span class="credit-eyebrow">Made By</span>
+                    <span class="credit-main italic">Horizon</span>
+                    <span class="credit-rule"></span>
+                </div>
+                <!-- Slide 2: Haris Aslam with photo -->
+                <div class="credit-slide" data-slide="2">
+                    <img src="assets/haris-horizon.webp" alt="Haris Aslam" class="credit-photo">
+                    <span class="credit-sub">Haris Aslam</span>
+                </div>
+                <!-- Slide 3: DP 2420 -->
+                <div class="credit-slide" data-slide="3">
+                    <span class="credit-eyebrow">Roll No</span>
+                    <span class="credit-dp">DP&nbsp;·&nbsp;2420</span>
+                </div>
             </div>
         </div>
 
-        <div class="absolute bottom-6 font-cinzel text-[10px] font-semibold tracking-[0.4em] uppercase" style="color: var(--berry-red);">Curated by Horizon</div>
+        <div class="absolute bottom-6 font-cinzel text-[10px] font-semibold tracking-[0.4em] uppercase" style="color: var(--gold-bright);">Ashwagandha 3D</div>
     </div>
 
     <!-- ===== Main App ===== -->
@@ -667,28 +793,43 @@
         const resetBtn  = document.getElementById('reset-btn');
         const specimenTag = document.getElementById('specimen-tag');
 
-        // Hide / show specimen tag so it doesn't disturb the model
-        let specimenHideTimer = null;
-        const hideSpecimen = () => {
-            if (!specimenTag) return;
-            specimenTag.classList.add('is-hidden');
-            clearTimeout(specimenHideTimer);
-        };
-        const showSpecimenAfter = (ms = 2200) => {
-            if (!specimenTag) return;
-            clearTimeout(specimenHideTimer);
-            specimenHideTimer = setTimeout(() => {
-                if (!rotating) specimenTag.classList.remove('is-hidden');
-            }, ms);
-        };
+        // ===== Splash credit transition gate =====
+        // Model load is gated until the full credit transition completes.
+        // Even if the model loads instantly, progress is capped at 99%
+        // until "Made by Horizon → Haris Aslam → DP 2420" finishes.
+        const slides = Array.from(document.querySelectorAll('#credit-stage .credit-slide'));
+        const SLIDE_DURATION = 1600;   // ms each slide stays visible
+        const INITIAL_DELAY  = 600;    // ms before first slide shows
+        const FINAL_HOLD     = 700;    // ms hold after last slide
+        const totalCreditTime = INITIAL_DELAY + SLIDE_DURATION * slides.length + FINAL_HOLD;
 
-        viewer.addEventListener('progress', (e) => {
-            const p = Math.round(e.detail.totalProgress * 100);
-            bar.style.width = p + '%';
-            text.textContent = `Loading ${p}%`;
-        });
+        let creditDone = false;
+        let modelLoaded = false;
 
-        viewer.addEventListener('load', () => {
+        // Drive credit slide animation
+        const runCredits = () => {
+            let i = 0;
+            const playNext = () => {
+                slides.forEach(s => s.classList.remove('active'));
+                if (i < slides.length) {
+                    slides[i].classList.add('active');
+                    i++;
+                    setTimeout(playNext, SLIDE_DURATION);
+                } else {
+                    setTimeout(() => {
+                        creditDone = true;
+                        tryFinishSplash();
+                    }, FINAL_HOLD);
+                }
+            };
+            setTimeout(playNext, INITIAL_DELAY);
+        };
+        runCredits();
+
+        const finishSplash = () => {
+            // ensure progress shows 100%
+            bar.style.width = '100%';
+            text.textContent = 'Loading 100%';
             splash.style.opacity = '0';
             setTimeout(() => {
                 splash.style.display = 'none';
@@ -705,6 +846,43 @@
                 viewer.addEventListener('pointerdown', hide);
                 viewer.addEventListener('camera-change', hide);
             }, 700);
+        };
+
+        const tryFinishSplash = () => {
+            if (creditDone && modelLoaded) finishSplash();
+        };
+
+        // Hide / show specimen tag so it doesn't disturb the model
+        let specimenHideTimer = null;
+        const hideSpecimen = () => {
+            if (!specimenTag) return;
+            specimenTag.classList.add('is-hidden');
+            clearTimeout(specimenHideTimer);
+        };
+        const showSpecimenAfter = (ms = 2200) => {
+            if (!specimenTag) return;
+            clearTimeout(specimenHideTimer);
+            specimenHideTimer = setTimeout(() => {
+                if (!rotating) specimenTag.classList.remove('is-hidden');
+            }, ms);
+        };
+
+        viewer.addEventListener('progress', (e) => {
+            let p = Math.round(e.detail.totalProgress * 100);
+            // Cap at 99% until the credit transition is complete
+            if (!creditDone && p >= 100) p = 99;
+            bar.style.width = p + '%';
+            text.textContent = `Loading ${p}%`;
+        });
+
+        viewer.addEventListener('load', () => {
+            modelLoaded = true;
+            if (!creditDone) {
+                // Hold the bar at 99% visually until credits finish
+                bar.style.width = '99%';
+                text.textContent = 'Loading 99%';
+            }
+            tryFinishSplash();
         });
 
         let rotating = false;
