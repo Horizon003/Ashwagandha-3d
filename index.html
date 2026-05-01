@@ -308,23 +308,41 @@
             50% { opacity: 0.95; transform: scale(1.12); }
         }
 
-        /* ===== Animated credit line ===== */
+        /* ===== Animated credit line — premium prominent showcase ===== */
         .credit-line {
             font-family: 'Cinzel', serif;
-            font-weight: 600;
-            letter-spacing: 0.18em;
+            font-weight: 700;
+            letter-spacing: 0.20em;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 17px;
             color: var(--maroon);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
-            min-height: 22px;
-            margin-top: 18px;
-            margin-bottom: 22px;
+            gap: 10px;
+            min-height: 32px;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            padding: 14px 22px;
+            position: relative;
+            text-align: center;
+            line-height: 1.5;
         }
+        .credit-line::before,
+        .credit-line::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #C9952A 30%, #FFD66B 50%, #C9952A 70%, transparent 100%);
+            opacity: 0.7;
+        }
+        .credit-line::before { top: 0; }
+        .credit-line::after  { bottom: 0; }
+
         .credit-piece {
             opacity: 0;
             transform: translateY(8px);
@@ -332,39 +350,74 @@
             white-space: nowrap;
         }
         .credit-piece.show {
-            animation: creditFadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: creditFadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
         @keyframes creditFadeIn {
-            0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+            0% { opacity: 0; transform: translateY(12px); filter: blur(5px); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-        .credit-piece.made     { color: var(--forest-deep); font-weight: 700; }
-        .credit-piece.horizon  {
-            color: var(--gold-royal);
-            font-weight: 800;
-            letter-spacing: 0.22em;
-            text-shadow: 0 1px 2px rgba(201, 149, 42, 0.25);
-        }
-        .credit-piece.dash     { color: var(--gold-warm); letter-spacing: 0.05em; font-weight: 500; }
-        .credit-piece.haris    {
-            color: var(--maroon);
-            font-weight: 800;
-            letter-spacing: 0.22em;
-        }
-        .credit-piece.dp       {
-            color: var(--forest-mid);
+        .credit-piece.made {
+            color: var(--forest-deep);
             font-weight: 700;
-            letter-spacing: 0.18em;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 0.32em;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+        }
+        .credit-piece.horizon  {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-style: italic;
+            font-size: 28px;
+            letter-spacing: 0.06em;
+            text-transform: none;
+            text-shadow: 0 2px 8px rgba(201, 149, 42, 0.35);
+            display: inline-block;
+            transform: translateY(0);
+        }
+        .credit-piece.dash {
+            color: var(--gold-warm);
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            font-size: 16px;
+            opacity: 0.85;
+        }
+        .credit-piece.haris {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 22px;
+            letter-spacing: 0.04em;
+            text-transform: none;
+            background: linear-gradient(135deg, #6B1F2A 0%, #8C2A36 40%, #C9952A 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+            filter: drop-shadow(0 2px 4px rgba(107, 31, 42, 0.25));
+        }
+        .credit-piece.dp {
+            color: #FBF6EC;
+            font-weight: 800;
+            letter-spacing: 0.28em;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
+            font-size: 14px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #0F4C2A 0%, #1F6E3D 100%);
+            box-shadow:
+                0 4px 14px rgba(15, 76, 42, 0.45),
+                0 0 0 1px rgba(255, 214, 107, 0.55),
+                inset 0 1px 0 rgba(255, 214, 107, 0.25);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
         }
         .credit-piece.shimmer-text {
-            background: linear-gradient(90deg, var(--gold-royal) 0%, #FFD66B 30%, var(--gold-royal) 60%, #FFD66B 100%);
+            background: linear-gradient(90deg, #C9952A 0%, #FFD66B 25%, #FFE9A8 45%, #FFD66B 65%, #C9952A 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: textShimmer 2.5s linear infinite, creditFadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: textShimmer 2.5s linear infinite, creditFadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
         @keyframes textShimmer {
             from { background-position: 0% center; }
@@ -481,13 +534,13 @@
                 radial-gradient(ellipse at center 90%, rgba(15, 76, 42, 0.14) 0%, transparent 50%);
         }
 
-        /* Botanical specimen tag (taxonomy chip) */
+        /* Botanical specimen tag (taxonomy chip) — single line overlay */
         .specimen-tag {
             position: absolute;
             top: 18px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 8px 18px;
+            padding: 7px 16px;
             background: rgba(251, 246, 236, 0.78);
             backdrop-filter: blur(18px) saturate(170%);
             -webkit-backdrop-filter: blur(18px) saturate(170%);
@@ -496,10 +549,21 @@
             box-shadow:
                 0 8px 22px rgba(15, 76, 42, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            display: flex;
+            display: inline-flex;
+            flex-wrap: nowrap;
+            white-space: nowrap;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             z-index: 20;
+            max-width: calc(100% - 28px);
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .specimen-tag.is-hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-8px);
+            pointer-events: none;
         }
         .specimen-tag .latin {
             font-family: 'Fraunces', serif;
@@ -508,6 +572,7 @@
             color: var(--maroon);
             font-size: 13px;
             letter-spacing: 0.01em;
+            white-space: nowrap;
         }
         .specimen-tag .dot {
             width: 5px; height: 5px;
@@ -522,6 +587,7 @@
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--forest-deep);
+            white-space: nowrap;
         }
 
         /* Footer (forest green parchment) */
@@ -606,13 +672,13 @@
                 </div>
             </div>
 
-            <!-- Animated credit line: Made by Horizon —— Haris Aslam —— DP-2420 -->
+            <!-- Animated credit line: Made by Horizon · Haris Aslam · DP-2420 -->
             <div id="credit-line" class="credit-line" aria-label="Made by Horizon — Haris Aslam — DP-2420">
                 <span class="credit-piece made"     data-step="1">Made&nbsp;by</span>
                 <span class="credit-piece horizon shimmer-text" data-step="2">Horizon</span>
-                <span class="credit-piece dash"     data-step="3">——</span>
+                <span class="credit-piece dash"     data-step="3">·</span>
                 <span class="credit-piece haris"    data-step="4">Haris&nbsp;Aslam</span>
-                <span class="credit-piece dash"     data-step="5">——</span>
+                <span class="credit-piece dash"     data-step="5">·</span>
                 <span class="credit-piece dp"       data-step="6">DP-2420</span>
             </div>
 
@@ -681,6 +747,8 @@
                 shadow-softness="1"
                 environment-image="neutral"
                 exposure="1"
+                loading="eager"
+                reveal="auto"
                 style="background-color: transparent;"
                 class="w-full h-full outline-none"
                 alt="A 3D model of Ashwagandha (Withania somnifera)">
@@ -752,50 +820,78 @@
         const rotateBtn = document.getElementById('auto-rotate-btn');
         const resetBtn  = document.getElementById('reset-btn');
 
-        /* ====== Credit-line intro animation gating ====== */
-        // Loader is capped at 99% until the credit animation completes,
-        // even if the model finishes loading early.
-        let creditAnimationDone = false;
-        let modelLoaded = false;
-
-        // Reveal credit pieces one by one, then mark animation done
+        /* ====== Credit-line intro animation ====== */
         const creditPieces = document.querySelectorAll('#credit-line .credit-piece');
-        const stepDelays = [200, 700, 1250, 1650, 2200, 2600]; // ms after splash mount
-        const lastDelay  = stepDelays[stepDelays.length - 1];
-        const holdAfter  = 900; // extra hold so user can read the full name
-
+        const stepDelays = [150, 500, 900, 1250, 1700, 2050];
         creditPieces.forEach((el, i) => {
             setTimeout(() => el.classList.add('show'), stepDelays[i] || 0);
         });
 
-        setTimeout(() => {
-            creditAnimationDone = true;
-            tryFinishSplash();
-        }, lastDelay + holdAfter);
+        /* ====== Splash loader: 0 → 98% over ~5s (smooth, real-time animated),
+                  then HOLD at 98% until 5 sec mark, then JUMP 98 → 100%.
+                  Model loads in background; splash dismiss is time-driven so
+                  the model never blocks the splash from going away.        */
+        const SPLASH_DURATION = 5000;   // total splash time before showing model
+        const REAL_CAP        = 98;     // real progress goes up to 98%
+        const startTime       = performance.now();
 
-        /* ====== Loader progress (capped to 99% until credit done) ====== */
+        let displayedPct  = 0;
+        let modelLoaded   = false;
+        let splashDone    = false;
+
+        // Track real model loading progress (0..1)
+        let modelProgress = 0;
         viewer.addEventListener('progress', (e) => {
-            const raw = Math.round(e.detail.totalProgress * 100);
-            const shown = (!creditAnimationDone && raw >= 100) ? 99 : Math.min(raw, creditAnimationDone ? 100 : 99);
+            modelProgress = Math.max(modelProgress, e.detail.totalProgress || 0);
+            if (modelProgress >= 1) modelLoaded = true;
+        });
+        viewer.addEventListener('load', () => {
+            modelProgress = 1;
+            modelLoaded = true;
+        });
+        // Also dismiss errors gracefully
+        viewer.addEventListener('error', () => { modelLoaded = true; modelProgress = 1; });
+
+        // Animation loop: drive the bar 0 → 98 over SPLASH_DURATION,
+        // blended with real model progress so it feels honest.
+        function tick(now) {
+            const elapsed = now - startTime;
+            const t = Math.min(elapsed / SPLASH_DURATION, 1); // 0..1 over 5s
+
+            // Time-based curve (ease-out) toward 98%
+            const timeBased = (1 - Math.pow(1 - t, 1.6)) * REAL_CAP;
+            // Real model-based progress contribution (also capped at 98)
+            const realBased = modelProgress * REAL_CAP;
+            // Take the higher of the two -> always keeps moving, never stalls
+            let target = Math.max(timeBased, realBased);
+
+            // Smooth step toward target (never go backwards)
+            displayedPct += (target - displayedPct) * 0.18;
+            if (displayedPct > REAL_CAP) displayedPct = REAL_CAP;
+
+            const shown = Math.floor(displayedPct);
             bar.style.width = shown + '%';
             text.textContent = `Loading ${shown}%`;
-            if (raw >= 100) {
-                modelLoaded = true;
-                tryFinishSplash();
+
+            if (elapsed < SPLASH_DURATION) {
+                requestAnimationFrame(tick);
+            } else {
+                // After 5s, JUMP the fake 2% to 100% and dismiss splash
+                finishSplash();
             }
-        });
+        }
+        requestAnimationFrame(tick);
 
-        viewer.addEventListener('load', () => {
-            modelLoaded = true;
-            tryFinishSplash();
-        });
+        function finishSplash() {
+            if (splashDone) return;
+            splashDone = true;
 
-        function tryFinishSplash() {
-            if (!(creditAnimationDone && modelLoaded)) return;
-            // Push to 100% visually, then dismiss splash
+            // Fake jump from 98 → 100
+            bar.style.transition = 'width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)';
             bar.style.width = '100%';
             text.textContent = 'Loading 100%';
-            setTimeout(dismissSplash, 350);
+
+            setTimeout(dismissSplash, 480);
         }
 
         function dismissSplash() {
@@ -819,6 +915,9 @@
             }, 700);
         }
 
+        // Hard safety net: if anything goes wrong, force-dismiss after 7s
+        setTimeout(() => { if (!splashDone) finishSplash(); }, 7000);
+
         let rotating = false;
         rotateBtn.addEventListener('click', () => {
             rotating = !rotating;
@@ -827,10 +926,46 @@
                 viewer.setAttribute('auto-rotate-delay', '0');
                 viewer.setAttribute('rotation-per-second', '30deg');
                 rotateBtn.classList.add('active');
+                // Auto-rotate ON → hide chip (don't disturb visual)
+                hideSpecimenChip();
             } else {
                 viewer.removeAttribute('auto-rotate');
                 rotateBtn.classList.remove('active');
+                // Auto-rotate OFF → bring chip back
+                showSpecimenChip();
             }
+        });
+
+        /* ====== Specimen chip auto hide/show on interaction ====== */
+        const specimenChip = document.querySelector('.specimen-tag');
+        let chipHideTimer = null;
+
+        function hideSpecimenChip() {
+            if (specimenChip) specimenChip.classList.add('is-hidden');
+            if (chipHideTimer) { clearTimeout(chipHideTimer); chipHideTimer = null; }
+        }
+        function showSpecimenChip() {
+            if (specimenChip) specimenChip.classList.remove('is-hidden');
+        }
+        // While auto-rotate is OFF: hide on touch, then bring back after 5s of stillness
+        function scheduleChipReappear() {
+            if (rotating) return; // stay hidden during auto-rotate
+            if (chipHideTimer) clearTimeout(chipHideTimer);
+            chipHideTimer = setTimeout(() => {
+                if (!rotating) showSpecimenChip();
+            }, 5000);
+        }
+        function onUserInteract() {
+            hideSpecimenChip();
+            scheduleChipReappear();
+        }
+        // Listen on the model viewer for user interactions
+        viewer.addEventListener('pointerdown', onUserInteract);
+        viewer.addEventListener('touchstart', onUserInteract, { passive: true });
+        viewer.addEventListener('camera-change', (e) => {
+            // Only react to user-driven camera changes (ignore auto-rotate / programmatic)
+            const src = e.detail && e.detail.source;
+            if (src === 'user-interaction') onUserInteract();
         });
 
         resetBtn.addEventListener('click', () => {
