@@ -827,12 +827,17 @@
             setTimeout(() => el.classList.add('show'), stepDelays[i] || 0);
         });
 
-        /* ====== Splash loader: 0 → 98% over ~5s (smooth, real-time animated),
-                  then HOLD at 98% until 5 sec mark, then JUMP 98 → 100%.
-                  Model loads in background; splash dismiss is time-driven so
-                  the model never blocks the splash from going away.        */
-        const SPLASH_DURATION = 5000;   // total splash time before showing model
-        const REAL_CAP        = 98;     // real progress goes up to 98%
+        /* ====== Splash loader: STRICT 6 second minimum.
+                  - 0 → 90% follows REAL model loading progress (honest).
+                  - After 90%, progress becomes FAKE/simulated (slow crawl)
+                    until the 6-second mark is reached.
+                  - At 6s mark, JUMP to 100% and dismiss splash.
+                  - Splash NEVER dismisses before 6 seconds, even if the
+                    model finishes early — this gives the model extra time
+                    to load fully in the background so it's instantly ready. */
+        const SPLASH_DURATION = 6000;   // strict minimum splash time (6 sec)
+        const REAL_CAP        = 90;     // real progress only goes up to 90%
+        const FAKE_CAP        = 99;     // fake progress crawls toward 99 until 6s
         const startTime       = performance.now();
 
         let displayedPct  = 0;
@@ -849,25 +854,44 @@
             modelProgress = 1;
             modelLoaded = true;
         });
-        // Also dismiss errors gracefully
+        // Also handle errors gracefully (still wait full 6s)
         viewer.addEventListener('error', () => { modelLoaded = true; modelProgress = 1; });
 
-        // Animation loop: drive the bar 0 → 98 over SPLASH_DURATION,
-        // blended with real model progress so it feels honest.
+        /* Animation loop:
+           - Phase 1 (0..90%): mirror REAL model progress (capped at 90).
+           - Phase 2 (90..99%): once real progress hits 90% OR animation
+             reaches 90 via gentle time-based easing, slow crawl toward 99
+             until 6 seconds have elapsed. (FAKE delay phase.)
+           - At t = 6s: jump to 100% and dismiss splash.
+        */
         function tick(now) {
             const elapsed = now - startTime;
-            const t = Math.min(elapsed / SPLASH_DURATION, 1); // 0..1 over 5s
 
-            // Time-based curve (ease-out) toward 98%
-            const timeBased = (1 - Math.pow(1 - t, 1.6)) * REAL_CAP;
-            // Real model-based progress contribution (also capped at 98)
-            const realBased = modelProgress * REAL_CAP;
-            // Take the higher of the two -> always keeps moving, never stalls
-            let target = Math.max(timeBased, realBased);
+            // Real-based target (true model loading), capped at REAL_CAP (90%)
+            const realBased = Math.min(modelProgress, 1) * REAL_CAP;
 
-            // Smooth step toward target (never go backwards)
-            displayedPct += (target - displayedPct) * 0.18;
-            if (displayedPct > REAL_CAP) displayedPct = REAL_CAP;
+            // Gentle time-based fallback so the bar moves even before any
+            // model 'progress' events fire — but never overtakes real progress
+            // beyond REAL_CAP. Reaches REAL_CAP at ~70% of SPLASH_DURATION.
+            const tEarly = Math.min(elapsed / (SPLASH_DURATION * 0.7), 1);
+            const timeBased = (1 - Math.pow(1 - tEarly, 1.6)) * REAL_CAP;
+
+            // Phase 1 target: real model progress, but kept honest up to 90%
+            let target = Math.max(realBased, Math.min(timeBased, REAL_CAP));
+
+            // Phase 2 (FAKE crawl): only kicks in once we've reached REAL_CAP.
+            // Slowly crawls from 90 → 99 across the remaining time until 6s.
+            if (displayedPct >= REAL_CAP - 0.5 || target >= REAL_CAP) {
+                // remaining time fraction (0..1) in the post-90% window
+                const phase2Start = SPLASH_DURATION * 0.7;
+                const phase2 = Math.min(Math.max((elapsed - phase2Start) / (SPLASH_DURATION - phase2Start), 0), 1);
+                const fakeTarget = REAL_CAP + (FAKE_CAP - REAL_CAP) * phase2;
+                target = Math.max(target, fakeTarget);
+            }
+
+            // Smooth step toward target (never goes backwards)
+            displayedPct += (target - displayedPct) * 0.16;
+            if (displayedPct > FAKE_CAP) displayedPct = FAKE_CAP;
 
             const shown = Math.floor(displayedPct);
             bar.style.width = shown + '%';
@@ -876,7 +900,7 @@
             if (elapsed < SPLASH_DURATION) {
                 requestAnimationFrame(tick);
             } else {
-                // After 5s, JUMP the fake 2% to 100% and dismiss splash
+                // Strict 6-second gate reached — jump to 100% and dismiss
                 finishSplash();
             }
         }
@@ -886,7 +910,7 @@
             if (splashDone) return;
             splashDone = true;
 
-            // Fake jump from 98 → 100
+            // Final jump to 100%
             bar.style.transition = 'width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)';
             bar.style.width = '100%';
             text.textContent = 'Loading 100%';
