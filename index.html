@@ -11,66 +11,79 @@
     <!-- Google Fonts: Premium Pharmacognosy / Botanical Heritage -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Playfair+Display:wght@400;500;600;700;800&family=DM+Serif+Display&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Google Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <style>
         :root {
-            /* Pharmacognosy / Botanical Heritage Palette */
-            --forest-deep: #0F4C2A;
-            --forest-classic: #1B5E20;
-            --forest-mid: #1F6E3D;
-            --green-soft: #2E8B4A;
-            --green-leaf: #4CAF50;
-            --mint-light: #E8F5E9;
-            --gold-royal: #C9952A;
-            --gold-warm: #E6B23A;
-            --gold-bright: #FFD66B;
-            --cream: #FBF6EC;
-            --cream-deep: #F4ECD8;
-            --maroon: #6B1F2A;
-            --maroon-soft: #8C2A36;
-            --ink: #1A2E1F;
+            /* Authentic Ashwagandha Plant Palette */
+            /* Inspired by: leaves (deep sage green), stems (woody olive),
+               roots (earthy tan/sienna), berries (coral red), parchment (cream) */
+            --leaf-deep:    #1F4A2C;   /* deep ashwagandha leaf green */
+            --leaf-mid:     #3A6B43;   /* mid sage leaf */
+            --leaf-soft:    #6B8E5A;   /* dusty sage */
+            --stem-olive:   #87966B;   /* woody olive stem */
+            --root-deep:    #6B4A2B;   /* dark root brown */
+            --root-tan:     #B08660;   /* root tan */
+            --root-light:   #D9B892;   /* pale root */
+            --berry-red:    #C24B3A;   /* ashwagandha berry red */
+            --berry-soft:   #D97A5C;   /* soft coral berry */
+            --gold-royal:   #B8862B;   /* aged gold */
+            --gold-warm:    #D4A445;   /* warm gold */
+            --gold-bright:  #EFC974;   /* light gold */
+            --cream:        #F8F1E2;   /* parchment cream */
+            --cream-deep:   #EFE4CC;   /* deeper parchment */
+            --ink:          #1F2A1B;   /* deep botanical ink */
 
-            /* Glass tokens (warm cream tint) */
-            --glass-bg: rgba(255, 250, 235, 0.55);
-            --glass-bg-strong: rgba(255, 250, 235, 0.78);
-            --glass-border: rgba(201, 149, 42, 0.35);
-            --glass-shadow: 0 14px 34px rgba(15, 76, 42, 0.22);
+            /* Aliases for legacy variable names */
+            --forest-deep: var(--leaf-deep);
+            --forest-classic: #2A5A33;
+            --forest-mid: var(--leaf-mid);
+            --green-soft: var(--leaf-soft);
+            --green-leaf: #5B7A4A;
+            --mint-light: #E8EFD9;
+            --maroon: var(--berry-red);
+            --maroon-soft: var(--berry-soft);
+
+            /* Glass tokens (parchment + gold) */
+            --glass-bg: rgba(248, 241, 226, 0.55);
+            --glass-bg-strong: rgba(248, 241, 226, 0.82);
+            --glass-border: rgba(184, 134, 43, 0.38);
+            --glass-shadow: 0 14px 34px rgba(31, 74, 44, 0.22);
         }
 
         html, body {
-            font-family: 'Manrope', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Jost', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             color: var(--ink);
         }
 
-        /* Typography roles */
-        .font-cinzel    { font-family: 'Cinzel', serif; letter-spacing: 0.04em; }
+        /* Typography roles — Heritage Botanical */
+        .font-cinzel    { font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
         .font-fraunces  { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
         .font-playfair  { font-family: 'Playfair Display', serif; }
         .font-dm-serif  { font-family: 'DM Serif Display', serif; }
-        .font-bricolage { font-family: 'Bricolage Grotesque', sans-serif; }
-        .font-syne      { font-family: 'Syne', sans-serif; }
-        .font-outfit    { font-family: 'Outfit', sans-serif; }
-        .font-manrope   { font-family: 'Manrope', sans-serif; }
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-jost      { font-family: 'Jost', sans-serif; }
+        .font-inter     { font-family: 'Inter', sans-serif; }
         .font-space     { font-family: 'Space Grotesk', sans-serif; }
 
         model-viewer::part(default-progress-bar) { display: none; }
 
-        /* ===== Parchment / Botanical Background ===== */
+        /* ===== Ashwagandha Botanical Background ===== */
         .app-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(circle at 12% 18%, rgba(46, 139, 74, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 88% 22%, rgba(201, 149, 42, 0.20) 0%, transparent 45%),
-                radial-gradient(circle at 78% 82%, rgba(15, 76, 42, 0.18) 0%, transparent 50%),
-                radial-gradient(circle at 18% 88%, rgba(230, 178, 58, 0.16) 0%, transparent 45%),
-                linear-gradient(135deg, #FBF6EC 0%, #F4ECD8 100%);
+                radial-gradient(circle at 12% 18%, rgba(58, 107, 67, 0.22) 0%, transparent 48%),
+                radial-gradient(circle at 88% 22%, rgba(212, 164, 69, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 82% 78%, rgba(176, 134, 96, 0.22) 0%, transparent 50%),
+                radial-gradient(circle at 18% 88%, rgba(31, 74, 44, 0.16) 0%, transparent 48%),
+                linear-gradient(135deg, #F8F1E2 0%, #EFE4CC 55%, #E6D5B4 100%);
         }
         /* Subtle paper grain */
         .app-bg::after {
@@ -78,8 +91,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                repeating-linear-gradient(0deg, rgba(107, 31, 42, 0.025) 0 1px, transparent 1px 3px),
-                repeating-linear-gradient(90deg, rgba(15, 76, 42, 0.02) 0 1px, transparent 1px 3px);
+                repeating-linear-gradient(0deg, rgba(107, 74, 43, 0.025) 0 1px, transparent 1px 3px),
+                repeating-linear-gradient(90deg, rgba(31, 74, 44, 0.02) 0 1px, transparent 1px 3px);
             pointer-events: none;
             mix-blend-mode: multiply;
         }
@@ -92,9 +105,9 @@
             animation: orbFloat 14s ease-in-out infinite;
             pointer-events: none;
         }
-        .orb-1 { width: 340px; height: 340px; background: #2E8B4A; top: 4%; left: -90px; animation-delay: 0s; }
-        .orb-2 { width: 280px; height: 280px; background: #E6B23A; top: 28%; right: -70px; animation-delay: -5s; }
-        .orb-3 { width: 240px; height: 240px; background: #0F4C2A; bottom: 6%; left: 28%; animation-delay: -8s; }
+        .orb-1 { width: 340px; height: 340px; background: #3A6B43; top: 4%; left: -90px; animation-delay: 0s; }
+        .orb-2 { width: 280px; height: 280px; background: #D4A445; top: 28%; right: -70px; animation-delay: -5s; }
+        .orb-3 { width: 240px; height: 240px; background: #B08660; bottom: 6%; left: 28%; animation-delay: -8s; }
         @keyframes orbFloat {
             0%, 100% { transform: translate(0,0) scale(1); }
             50% { transform: translate(40px,-30px) scale(1.12); }
@@ -125,13 +138,13 @@
         /* ===== Header (forest green with gold accents) ===== */
         .glass-header {
             background:
-                linear-gradient(135deg, rgba(15, 76, 42, 0.96) 0%, rgba(31, 110, 61, 0.96) 100%);
+                linear-gradient(135deg, rgba(31, 74, 44, 0.97) 0%, rgba(58, 107, 67, 0.95) 60%, rgba(107, 74, 43, 0.93) 100%);
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border-bottom: 1px solid rgba(201, 149, 42, 0.55);
+            border-bottom: 1px solid rgba(184, 134, 43, 0.55);
             box-shadow:
-                0 6px 28px rgba(15, 76, 42, 0.35),
-                inset 0 1px 0 rgba(255, 214, 107, 0.25);
+                0 6px 28px rgba(31, 74, 44, 0.35),
+                inset 0 1px 0 rgba(239, 201, 116, 0.25);
             position: relative;
             overflow: hidden;
         }
@@ -140,8 +153,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(255, 214, 107, 0.18) 0%, transparent 40%),
-                radial-gradient(circle at 80% 50%, rgba(201, 149, 42, 0.16) 0%, transparent 45%);
+                radial-gradient(circle at 20% 50%, rgba(239, 201, 116, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 80% 50%, rgba(184, 134, 43, 0.18) 0%, transparent 45%);
             pointer-events: none;
         }
         /* Decorative gold border line */
@@ -152,32 +165,33 @@
             height: 2px;
             background: linear-gradient(90deg,
                 transparent 0%,
-                #C9952A 20%,
-                #FFD66B 50%,
-                #C9952A 80%,
+                #B8862B 20%,
+                #EFC974 50%,
+                #B8862B 80%,
                 transparent 100%);
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         .header-eyebrow {
             font-family: 'Cinzel', serif;
             font-weight: 600;
-            letter-spacing: 0.32em;
-            color: #FFD66B;
+            letter-spacing: 0.34em;
+            color: var(--gold-bright);
             text-transform: uppercase;
         }
         .header-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-weight: 700;
-            letter-spacing: -0.01em;
-            color: #FBF6EC;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+            letter-spacing: -0.015em;
+            color: var(--cream);
+            text-shadow: 0 2px 14px rgba(0,0,0,0.32);
+            font-optical-sizing: auto;
         }
         .header-sub {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Jost', sans-serif;
             font-weight: 500;
-            letter-spacing: 0.18em;
-            color: rgba(232, 245, 233, 0.78);
+            letter-spacing: 0.20em;
+            color: rgba(248, 241, 226, 0.82);
             text-transform: uppercase;
         }
 
@@ -187,12 +201,12 @@
             border-radius: 9999px;
             padding: 4px;
             background: conic-gradient(from 0deg,
-                #C9952A, #FFD66B, #E6B23A, #C9952A, #8C6914, #FFD66B, #C9952A);
+                #B8862B, #EFC974, #D4A445, #B8862B, #8C6914, #EFC974, #B8862B);
             box-shadow:
-                0 0 0 1px rgba(255, 214, 107, 0.5),
-                0 0 24px rgba(255, 214, 107, 0.55),
-                0 0 40px rgba(201, 149, 42, 0.45),
-                0 10px 30px rgba(15, 76, 42, 0.45);
+                0 0 0 1px rgba(239, 201, 116, 0.55),
+                0 0 24px rgba(239, 201, 116, 0.55),
+                0 0 40px rgba(184, 134, 43, 0.45),
+                0 10px 30px rgba(31, 74, 44, 0.45);
             animation: ringSpin 10s linear infinite;
         }
         @keyframes ringSpin { to { transform: rotate(360deg); } }
@@ -378,53 +392,66 @@
                 radial-gradient(ellipse at center 90%, rgba(15, 76, 42, 0.14) 0%, transparent 50%);
         }
 
-        /* Botanical specimen tag (taxonomy chip) */
+        /* Botanical specimen tag (taxonomy chip) — single-line, auto-hide on interaction */
         .specimen-tag {
             position: absolute;
-            top: 18px;
+            top: 14px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 8px 18px;
-            background: rgba(251, 246, 236, 0.78);
-            backdrop-filter: blur(18px) saturate(170%);
-            -webkit-backdrop-filter: blur(18px) saturate(170%);
-            border: 1px solid rgba(201, 149, 42, 0.5);
+            padding: 7px 18px;
+            background: rgba(248, 241, 226, 0.82);
+            backdrop-filter: blur(20px) saturate(170%);
+            -webkit-backdrop-filter: blur(20px) saturate(170%);
+            border: 1px solid rgba(184, 134, 43, 0.5);
             border-radius: 9999px;
             box-shadow:
-                0 8px 22px rgba(15, 76, 42, 0.18),
+                0 8px 22px rgba(31, 74, 44, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
             z-index: 20;
+            white-space: nowrap;
+            max-width: calc(100vw - 32px);
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .specimen-tag.is-hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-10px);
+            pointer-events: none;
         }
         .specimen-tag .latin {
-            font-family: 'Fraunces', serif;
+            font-family: 'Cormorant Garamond', 'Fraunces', serif;
             font-style: italic;
-            font-weight: 500;
-            color: var(--maroon);
-            font-size: 13px;
-            letter-spacing: 0.01em;
+            font-weight: 600;
+            color: var(--berry-red);
+            font-size: 14px;
+            letter-spacing: 0.005em;
+            white-space: nowrap;
         }
         .specimen-tag .dot {
             width: 5px; height: 5px;
             background: var(--gold-royal);
             border-radius: 9999px;
             box-shadow: 0 0 8px var(--gold-warm);
+            flex-shrink: 0;
         }
         .specimen-tag .common {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Cinzel', serif;
             font-weight: 600;
             font-size: 10px;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.24em;
             text-transform: uppercase;
-            color: var(--forest-deep);
+            color: var(--leaf-deep);
+            white-space: nowrap;
         }
 
         /* Footer (forest green parchment) */
         .glass-footer {
             background:
-                linear-gradient(135deg, rgba(15, 76, 42, 0.94) 0%, rgba(27, 94, 32, 0.94) 100%);
+                linear-gradient(135deg, rgba(31, 74, 44, 0.95) 0%, rgba(58, 107, 67, 0.93) 60%, rgba(107, 74, 43, 0.92) 100%);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
             border-top: 1px solid rgba(201, 149, 42, 0.55);
@@ -448,15 +475,15 @@
         .footer-label {
             font-family: 'Cinzel', serif;
             font-weight: 600;
-            letter-spacing: 0.28em;
-            color: #FFD66B;
+            letter-spacing: 0.30em;
+            color: var(--gold-bright);
             text-transform: uppercase;
         }
         .footer-version {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Jost', sans-serif;
             font-weight: 500;
-            letter-spacing: 0.10em;
-            color: rgba(232, 245, 233, 0.85);
+            letter-spacing: 0.12em;
+            color: rgba(248, 241, 226, 0.88);
         }
 
         /* Decorative laurel divider */
@@ -509,24 +536,24 @@
                 Pharmacognosy · Heritage
             </span>
 
-            <h1 class="font-playfair text-4xl md:text-5xl mb-2 font-bold tracking-tight" style="color: var(--forest-deep);">Ashwagandha 3D</h1>
+            <h1 class="font-fraunces text-4xl md:text-5xl mb-2 font-bold tracking-tight" style="color: var(--leaf-deep);">Ashwagandha 3D</h1>
 
             <div class="laurel-divider mb-3">
-                <span class="font-cinzel text-[11px] tracking-[0.4em]" style="color: var(--maroon);">WITHANIA SOMNIFERA</span>
+                <span class="font-cinzel text-[11px] tracking-[0.4em]" style="color: var(--berry-red);">WITHANIA SOMNIFERA</span>
             </div>
 
-            <p class="font-space text-[11px] font-semibold tracking-[0.32em] uppercase mb-9" style="color: var(--forest-mid);">Explore · Rotate · Discover</p>
+            <p class="font-jost text-[11px] font-semibold tracking-[0.32em] uppercase mb-9" style="color: var(--leaf-mid);">Explore · Rotate · Discover</p>
 
             <div class="w-72 h-[3px] progress-track rounded-full overflow-hidden">
                 <div id="progress-bar" class="h-full progress-fill rounded-full" style="width:0%"></div>
             </div>
             <div class="flex items-center gap-2 mt-4">
-                <span id="progress-text" class="font-space text-xs font-medium tabular-nums" style="color: var(--forest-deep);">Loading 0%</span>
+                <span id="progress-text" class="font-jost text-xs font-medium tabular-nums" style="color: var(--leaf-deep);">Loading 0%</span>
                 <span class="dot-loader"><span></span><span></span><span></span></span>
             </div>
         </div>
 
-        <div class="absolute bottom-6 font-cinzel text-[10px] font-semibold tracking-[0.4em] uppercase" style="color: var(--maroon);">Curated by Horizon</div>
+        <div class="absolute bottom-6 font-cinzel text-[10px] font-semibold tracking-[0.4em] uppercase" style="color: var(--berry-red);">Curated by Horizon</div>
     </div>
 
     <!-- ===== Main App ===== -->
@@ -552,11 +579,11 @@
         <!-- ===== 3D Model Viewer ===== -->
         <main class="flex-grow w-full relative model-stage">
 
-            <!-- Botanical specimen taxonomy tag -->
-            <div class="specimen-tag">
+            <!-- Botanical specimen taxonomy tag (single line, auto-hides on interaction) -->
+            <div id="specimen-tag" class="specimen-tag">
                 <span class="common">Specimen</span>
                 <span class="dot"></span>
-                <span class="latin">Withania somnifera</span>
+                <span class="latin">Withania&nbsp;somnifera</span>
             </div>
 
             <model-viewer
@@ -582,9 +609,9 @@
                             <div class="w-5 h-5 rounded-full absolute anim-swipe touch-indicator"
                                  style="background: var(--forest-deep);"></div>
                         </div>
-                        <span class="font-space text-[11px] font-semibold text-center" style="color: var(--forest-deep);">
+                        <span class="font-jost text-[11px] font-semibold text-center" style="color: var(--leaf-deep);">
                             1 Finger
-                            <br><span class="font-manrope font-normal" style="color: var(--maroon);">Drag to Rotate</span>
+                            <br><span class="font-inter font-normal" style="color: var(--berry-red);">Drag to Rotate</span>
                         </span>
                     </div>
                     <div class="flex flex-col items-center">
@@ -594,9 +621,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6M7 10h6"/>
                             </svg>
                         </div>
-                        <span class="font-space text-[11px] font-semibold text-center" style="color: var(--forest-deep);">
+                        <span class="font-jost text-[11px] font-semibold text-center" style="color: var(--leaf-deep);">
                             2 Fingers
-                            <br><span class="font-manrope font-normal" style="color: var(--maroon);">Pinch to Zoom</span>
+                            <br><span class="font-inter font-normal" style="color: var(--berry-red);">Pinch to Zoom</span>
                         </span>
                     </div>
                 </div>
@@ -638,6 +665,22 @@
         const tutorial = document.getElementById('tutorial-overlay');
         const rotateBtn = document.getElementById('auto-rotate-btn');
         const resetBtn  = document.getElementById('reset-btn');
+        const specimenTag = document.getElementById('specimen-tag');
+
+        // Hide / show specimen tag so it doesn't disturb the model
+        let specimenHideTimer = null;
+        const hideSpecimen = () => {
+            if (!specimenTag) return;
+            specimenTag.classList.add('is-hidden');
+            clearTimeout(specimenHideTimer);
+        };
+        const showSpecimenAfter = (ms = 2200) => {
+            if (!specimenTag) return;
+            clearTimeout(specimenHideTimer);
+            specimenHideTimer = setTimeout(() => {
+                if (!rotating) specimenTag.classList.remove('is-hidden');
+            }, ms);
+        };
 
         viewer.addEventListener('progress', (e) => {
             const p = Math.round(e.detail.totalProgress * 100);
@@ -672,11 +715,27 @@
                 viewer.setAttribute('auto-rotate-delay', '0');
                 viewer.setAttribute('rotation-per-second', '30deg');
                 rotateBtn.classList.add('active');
+                hideSpecimen();           // hide pill while auto-rotating
             } else {
                 viewer.removeAttribute('auto-rotate');
                 rotateBtn.classList.remove('active');
+                showSpecimenAfter(800);   // bring back after stop
             }
         });
+
+        // Hide specimen pill on any model interaction (touch / drag / camera move)
+        viewer.addEventListener('pointerdown', hideSpecimen);
+        viewer.addEventListener('camera-change', () => {
+            hideSpecimen();
+            if (!rotating) showSpecimenAfter(2200);
+        });
+        viewer.addEventListener('pointerup', () => {
+            if (!rotating) showSpecimenAfter(2200);
+        });
+        viewer.addEventListener('touchstart', hideSpecimen, { passive: true });
+        viewer.addEventListener('touchend', () => {
+            if (!rotating) showSpecimenAfter(2200);
+        }, { passive: true });
 
         resetBtn.addEventListener('click', () => {
             viewer.cameraOrbit  = 'auto auto auto';
@@ -686,6 +745,8 @@
             resetBtn.classList.remove('spin-once');
             void resetBtn.offsetWidth;
             resetBtn.classList.add('spin-once');
+            hideSpecimen();
+            showSpecimenAfter(900);
         });
     })();
     </script>
