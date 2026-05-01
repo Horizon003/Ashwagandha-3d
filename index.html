@@ -11,79 +11,66 @@
     <!-- Google Fonts: Premium Pharmacognosy / Botanical Heritage -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Playfair+Display:wght@400;500;600;700;800&family=DM+Serif+Display&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Google Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <style>
         :root {
-            /* Authentic Ashwagandha Plant Palette */
-            /* Inspired by: leaves (deep sage green), stems (woody olive),
-               roots (earthy tan/sienna), berries (coral red), parchment (cream) */
-            --leaf-deep:    #1F4A2C;   /* deep ashwagandha leaf green */
-            --leaf-mid:     #3A6B43;   /* mid sage leaf */
-            --leaf-soft:    #6B8E5A;   /* dusty sage */
-            --stem-olive:   #87966B;   /* woody olive stem */
-            --root-deep:    #6B4A2B;   /* dark root brown */
-            --root-tan:     #B08660;   /* root tan */
-            --root-light:   #D9B892;   /* pale root */
-            --berry-red:    #C24B3A;   /* ashwagandha berry red */
-            --berry-soft:   #D97A5C;   /* soft coral berry */
-            --gold-royal:   #B8862B;   /* aged gold */
-            --gold-warm:    #D4A445;   /* warm gold */
-            --gold-bright:  #EFC974;   /* light gold */
-            --cream:        #F8F1E2;   /* parchment cream */
-            --cream-deep:   #EFE4CC;   /* deeper parchment */
-            --ink:          #1F2A1B;   /* deep botanical ink */
+            /* Pharmacognosy / Botanical Heritage Palette */
+            --forest-deep: #0F4C2A;
+            --forest-classic: #1B5E20;
+            --forest-mid: #1F6E3D;
+            --green-soft: #2E8B4A;
+            --green-leaf: #4CAF50;
+            --mint-light: #E8F5E9;
+            --gold-royal: #C9952A;
+            --gold-warm: #E6B23A;
+            --gold-bright: #FFD66B;
+            --cream: #FBF6EC;
+            --cream-deep: #F4ECD8;
+            --maroon: #6B1F2A;
+            --maroon-soft: #8C2A36;
+            --ink: #1A2E1F;
 
-            /* Aliases for legacy variable names */
-            --forest-deep: var(--leaf-deep);
-            --forest-classic: #2A5A33;
-            --forest-mid: var(--leaf-mid);
-            --green-soft: var(--leaf-soft);
-            --green-leaf: #5B7A4A;
-            --mint-light: #E8EFD9;
-            --maroon: var(--berry-red);
-            --maroon-soft: var(--berry-soft);
-
-            /* Glass tokens (parchment + gold) */
-            --glass-bg: rgba(248, 241, 226, 0.55);
-            --glass-bg-strong: rgba(248, 241, 226, 0.82);
-            --glass-border: rgba(184, 134, 43, 0.38);
-            --glass-shadow: 0 14px 34px rgba(31, 74, 44, 0.22);
+            /* Glass tokens (warm cream tint) */
+            --glass-bg: rgba(255, 250, 235, 0.55);
+            --glass-bg-strong: rgba(255, 250, 235, 0.78);
+            --glass-border: rgba(201, 149, 42, 0.35);
+            --glass-shadow: 0 14px 34px rgba(15, 76, 42, 0.22);
         }
 
         html, body {
-            font-family: 'Jost', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Manrope', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             color: var(--ink);
         }
 
-        /* Typography roles — Heritage Botanical */
-        .font-cinzel    { font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
+        /* Typography roles */
+        .font-cinzel    { font-family: 'Cinzel', serif; letter-spacing: 0.04em; }
         .font-fraunces  { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
         .font-playfair  { font-family: 'Playfair Display', serif; }
         .font-dm-serif  { font-family: 'DM Serif Display', serif; }
-        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
-        .font-jost      { font-family: 'Jost', sans-serif; }
-        .font-inter     { font-family: 'Inter', sans-serif; }
+        .font-bricolage { font-family: 'Bricolage Grotesque', sans-serif; }
+        .font-syne      { font-family: 'Syne', sans-serif; }
+        .font-outfit    { font-family: 'Outfit', sans-serif; }
+        .font-manrope   { font-family: 'Manrope', sans-serif; }
         .font-space     { font-family: 'Space Grotesk', sans-serif; }
 
         model-viewer::part(default-progress-bar) { display: none; }
 
-        /* ===== Ashwagandha Botanical Background ===== */
+        /* ===== Parchment / Botanical Background ===== */
         .app-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(circle at 12% 18%, rgba(58, 107, 67, 0.22) 0%, transparent 48%),
-                radial-gradient(circle at 88% 22%, rgba(212, 164, 69, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 82% 78%, rgba(176, 134, 96, 0.22) 0%, transparent 50%),
-                radial-gradient(circle at 18% 88%, rgba(31, 74, 44, 0.16) 0%, transparent 48%),
-                linear-gradient(135deg, #F8F1E2 0%, #EFE4CC 55%, #E6D5B4 100%);
+                radial-gradient(circle at 12% 18%, rgba(46, 139, 74, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 22%, rgba(201, 149, 42, 0.20) 0%, transparent 45%),
+                radial-gradient(circle at 78% 82%, rgba(15, 76, 42, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 18% 88%, rgba(230, 178, 58, 0.16) 0%, transparent 45%),
+                linear-gradient(135deg, #FBF6EC 0%, #F4ECD8 100%);
         }
         /* Subtle paper grain */
         .app-bg::after {
@@ -91,8 +78,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                repeating-linear-gradient(0deg, rgba(107, 74, 43, 0.025) 0 1px, transparent 1px 3px),
-                repeating-linear-gradient(90deg, rgba(31, 74, 44, 0.02) 0 1px, transparent 1px 3px);
+                repeating-linear-gradient(0deg, rgba(107, 31, 42, 0.025) 0 1px, transparent 1px 3px),
+                repeating-linear-gradient(90deg, rgba(15, 76, 42, 0.02) 0 1px, transparent 1px 3px);
             pointer-events: none;
             mix-blend-mode: multiply;
         }
@@ -105,9 +92,9 @@
             animation: orbFloat 14s ease-in-out infinite;
             pointer-events: none;
         }
-        .orb-1 { width: 340px; height: 340px; background: #3A6B43; top: 4%; left: -90px; animation-delay: 0s; }
-        .orb-2 { width: 280px; height: 280px; background: #D4A445; top: 28%; right: -70px; animation-delay: -5s; }
-        .orb-3 { width: 240px; height: 240px; background: #B08660; bottom: 6%; left: 28%; animation-delay: -8s; }
+        .orb-1 { width: 340px; height: 340px; background: #2E8B4A; top: 4%; left: -90px; animation-delay: 0s; }
+        .orb-2 { width: 280px; height: 280px; background: #E6B23A; top: 28%; right: -70px; animation-delay: -5s; }
+        .orb-3 { width: 240px; height: 240px; background: #0F4C2A; bottom: 6%; left: 28%; animation-delay: -8s; }
         @keyframes orbFloat {
             0%, 100% { transform: translate(0,0) scale(1); }
             50% { transform: translate(40px,-30px) scale(1.12); }
@@ -138,13 +125,13 @@
         /* ===== Header (forest green with gold accents) ===== */
         .glass-header {
             background:
-                linear-gradient(135deg, rgba(31, 74, 44, 0.97) 0%, rgba(58, 107, 67, 0.95) 60%, rgba(107, 74, 43, 0.93) 100%);
+                linear-gradient(135deg, rgba(15, 76, 42, 0.96) 0%, rgba(31, 110, 61, 0.96) 100%);
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border-bottom: 1px solid rgba(184, 134, 43, 0.55);
+            border-bottom: 1px solid rgba(201, 149, 42, 0.55);
             box-shadow:
-                0 6px 28px rgba(31, 74, 44, 0.35),
-                inset 0 1px 0 rgba(239, 201, 116, 0.25);
+                0 6px 28px rgba(15, 76, 42, 0.35),
+                inset 0 1px 0 rgba(255, 214, 107, 0.25);
             position: relative;
             overflow: hidden;
         }
@@ -153,8 +140,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(239, 201, 116, 0.18) 0%, transparent 40%),
-                radial-gradient(circle at 80% 50%, rgba(184, 134, 43, 0.18) 0%, transparent 45%);
+                radial-gradient(circle at 20% 50%, rgba(255, 214, 107, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 80% 50%, rgba(201, 149, 42, 0.16) 0%, transparent 45%);
             pointer-events: none;
         }
         /* Decorative gold border line */
@@ -165,33 +152,32 @@
             height: 2px;
             background: linear-gradient(90deg,
                 transparent 0%,
-                #B8862B 20%,
-                #EFC974 50%,
-                #B8862B 80%,
+                #C9952A 20%,
+                #FFD66B 50%,
+                #C9952A 80%,
                 transparent 100%);
-            opacity: 0.9;
+            opacity: 0.85;
         }
 
         .header-eyebrow {
             font-family: 'Cinzel', serif;
             font-weight: 600;
-            letter-spacing: 0.34em;
-            color: var(--gold-bright);
+            letter-spacing: 0.32em;
+            color: #FFD66B;
             text-transform: uppercase;
         }
         .header-title {
-            font-family: 'Fraunces', serif;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            letter-spacing: -0.015em;
-            color: var(--cream);
-            text-shadow: 0 2px 14px rgba(0,0,0,0.32);
-            font-optical-sizing: auto;
+            letter-spacing: -0.01em;
+            color: #FBF6EC;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.25);
         }
         .header-sub {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 500;
-            letter-spacing: 0.20em;
-            color: rgba(248, 241, 226, 0.82);
+            letter-spacing: 0.18em;
+            color: rgba(232, 245, 233, 0.78);
             text-transform: uppercase;
         }
 
@@ -201,12 +187,12 @@
             border-radius: 9999px;
             padding: 4px;
             background: conic-gradient(from 0deg,
-                #B8862B, #EFC974, #D4A445, #B8862B, #8C6914, #EFC974, #B8862B);
+                #C9952A, #FFD66B, #E6B23A, #C9952A, #8C6914, #FFD66B, #C9952A);
             box-shadow:
-                0 0 0 1px rgba(239, 201, 116, 0.55),
-                0 0 24px rgba(239, 201, 116, 0.55),
-                0 0 40px rgba(184, 134, 43, 0.45),
-                0 10px 30px rgba(31, 74, 44, 0.45);
+                0 0 0 1px rgba(255, 214, 107, 0.5),
+                0 0 24px rgba(255, 214, 107, 0.55),
+                0 0 40px rgba(201, 149, 42, 0.45),
+                0 10px 30px rgba(15, 76, 42, 0.45);
             animation: ringSpin 10s linear infinite;
         }
         @keyframes ringSpin { to { transform: rotate(360deg); } }
@@ -241,70 +227,159 @@
             border: 1px solid rgba(255, 214, 107, 0.7);
         }
 
-        /* ===== Splash Screen (deep emerald + gold heritage) ===== */
+        /* ===== Splash Screen (premium parchment + emerald heritage) ===== */
         .splash-bg {
             background:
-                radial-gradient(circle at 18% 14%, rgba(58, 107, 67, 0.55) 0%, transparent 50%),
-                radial-gradient(circle at 84% 18%, rgba(212, 164, 69, 0.35) 0%, transparent 48%),
-                radial-gradient(circle at 78% 84%, rgba(176, 134, 96, 0.40) 0%, transparent 52%),
-                radial-gradient(circle at 14% 88%, rgba(31, 74, 44, 0.55) 0%, transparent 50%),
-                linear-gradient(160deg, #0F2A1A 0%, #1F4A2C 35%, #2A5A33 60%, #6B4A2B 100%);
-        }
-        .splash-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                repeating-linear-gradient(0deg, rgba(255, 235, 180, 0.025) 0 1px, transparent 1px 4px),
-                repeating-linear-gradient(90deg, rgba(255, 235, 180, 0.018) 0 1px, transparent 1px 4px);
-            pointer-events: none;
-            mix-blend-mode: overlay;
+                radial-gradient(circle at 18% 15%, rgba(255, 252, 240, 1) 0%, transparent 50%),
+                radial-gradient(circle at 82% 85%, rgba(240, 228, 200, 1) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(251, 246, 236, 1) 0%, rgba(238, 226, 196, 1) 100%);
         }
         .blob {
             position: absolute;
             border-radius: 9999px;
             filter: blur(70px);
             opacity: 0.55;
-            animation: blobFloat 11s ease-in-out infinite;
+            animation: blobFloat 10s ease-in-out infinite;
         }
-        .blob-1 { width: 320px; height: 320px; background: #3A6B43; top: 6%; left: -80px; animation-delay: 0s; }
-        .blob-2 { width: 260px; height: 260px; background: #EFC974; bottom: 8%; right: -50px; animation-delay: -3s; }
-        .blob-3 { width: 220px; height: 220px; background: #B08660; top: 42%; left: 55%; animation-delay: -5s; }
+        .blob-1 { width: 300px; height: 300px; background: #2E8B4A; top: 6%; left: -70px; animation-delay: 0s; }
+        .blob-2 { width: 250px; height: 250px; background: #E6B23A; bottom: 12%; right: -50px; animation-delay: -3s; }
+        .blob-3 { width: 220px; height: 220px; background: #0F4C2A; top: 48%; left: 55%; animation-delay: -5s; }
+        .blob-4 { width: 180px; height: 180px; background: #6B1F2A; top: 75%; left: 8%; animation-delay: -7s; opacity: 0.25; }
         @keyframes blobFloat {
             0%, 100% { transform: translate(0,0) scale(1); }
-            50% { transform: translate(30px,-20px) scale(1.1); }
+            50% { transform: translate(35px,-25px) scale(1.12); }
         }
 
-        .splash-emblem {
-            animation: emblemFloat 3.4s ease-in-out infinite;
-            filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.45));
+        /* ===== Profile portrait emblem (replaces leaf logo) ===== */
+        .splash-portrait {
+            animation: portraitFloat 3.5s ease-in-out infinite;
+            filter: drop-shadow(0 18px 38px rgba(15, 76, 42, 0.4));
+            position: relative;
         }
-        @keyframes emblemFloat {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
+        @keyframes portraitFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
         }
-
-        .emblem-disc {
+        .portrait-ring {
+            width: 132px;
+            height: 132px;
+            border-radius: 9999px;
+            padding: 5px;
             background:
-                radial-gradient(circle at 30% 25%, #FFE9A8 0%, #EFC974 35%, #C9952A 75%, #8C6914 100%);
+                conic-gradient(from 0deg, #C9952A, #FFD66B, #E6B23A, #FFE9A8, #C9952A, #8B6A1A, #FFD66B, #C9952A);
             box-shadow:
-                inset 0 2px 4px rgba(255, 255, 255, 0.7),
-                inset 0 -4px 10px rgba(80, 50, 0, 0.45),
                 0 14px 36px rgba(201, 149, 42, 0.55),
-                0 0 60px rgba(239, 201, 116, 0.35);
-            border: 2px solid #FFE9A8;
+                0 0 0 2px rgba(255, 214, 107, 0.35),
+                inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            animation: ringSpin 8s linear infinite;
+            position: relative;
+        }
+        @keyframes ringSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .portrait-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            overflow: hidden;
+            background: #FBF6EC;
+            border: 3px solid #FBF6EC;
+            animation: ringSpin 8s linear infinite reverse; /* counter-rotate so face stays upright */
+            display: block;
+        }
+        .portrait-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .portrait-glow {
+            position: absolute;
+            inset: -18px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(255, 214, 107, 0.45) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: -1;
+            animation: glowPulse 2.8s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(1.12); }
+        }
+
+        /* ===== Animated credit line ===== */
+        .credit-line {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--maroon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-height: 22px;
+            margin-top: 18px;
+            margin-bottom: 22px;
+        }
+        .credit-piece {
+            opacity: 0;
+            transform: translateY(8px);
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .credit-piece.show {
+            animation: creditFadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        @keyframes creditFadeIn {
+            0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .credit-piece.made     { color: var(--forest-deep); font-weight: 700; }
+        .credit-piece.horizon  {
+            color: var(--gold-royal);
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-shadow: 0 1px 2px rgba(201, 149, 42, 0.25);
+        }
+        .credit-piece.dash     { color: var(--gold-warm); letter-spacing: 0.05em; font-weight: 500; }
+        .credit-piece.haris    {
+            color: var(--maroon);
+            font-weight: 800;
+            letter-spacing: 0.22em;
+        }
+        .credit-piece.dp       {
+            color: var(--forest-mid);
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+        }
+        .credit-piece.shimmer-text {
+            background: linear-gradient(90deg, var(--gold-royal) 0%, #FFD66B 30%, var(--gold-royal) 60%, #FFD66B 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 2.5s linear infinite, creditFadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        @keyframes textShimmer {
+            from { background-position: 0% center; }
+            to   { background-position: 200% center; }
         }
 
         .progress-track {
-            background: rgba(248, 241, 226, 0.18);
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(239, 201, 116, 0.2);
+            background: rgba(15, 76, 42, 0.10);
+            box-shadow: inset 0 1px 2px rgba(15, 76, 42, 0.18);
         }
         .progress-fill {
-            background: linear-gradient(90deg, #B8862B 0%, #EFC974 35%, #FFE9A8 50%, #EFC974 65%, #B8862B 100%);
+            background: linear-gradient(90deg, #C9952A 0%, #FFD66B 50%, #C9952A 100%);
             background-size: 200% 100%;
             animation: shimmer 1.8s linear infinite;
-            box-shadow: 0 0 14px rgba(255, 214, 107, 0.75);
+            box-shadow: 0 0 12px rgba(255, 214, 107, 0.6);
         }
         @keyframes shimmer {
             0% { background-position: 200% 0; }
@@ -314,107 +389,15 @@
         .dot-loader span {
             display: inline-block;
             width: 6px; height: 6px; margin: 0 2px;
-            background: var(--gold-bright);
+            background: var(--forest-deep);
             border-radius: 9999px;
             animation: dotPulse 1.2s ease-in-out infinite;
-            box-shadow: 0 0 8px rgba(239, 201, 116, 0.6);
         }
         .dot-loader span:nth-child(2) { animation-delay: 0.15s; }
         .dot-loader span:nth-child(3) { animation-delay: 0.3s; }
         @keyframes dotPulse {
             0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
             40% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* ===== Splash credit (Made by Horizon → Haris Aslam → DP 2420) ===== */
-        .credit-stage {
-            position: relative;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 22px;
-        }
-        .credit-slide {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            opacity: 0;
-            transform: translateY(14px) scale(0.96);
-            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-            pointer-events: none;
-        }
-        .credit-slide.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        .credit-eyebrow {
-            font-family: 'Cinzel', serif;
-            font-weight: 600;
-            font-size: 9.5px;
-            letter-spacing: 0.42em;
-            text-transform: uppercase;
-            color: rgba(239, 201, 116, 0.78);
-        }
-        .credit-main {
-            font-family: 'Fraunces', serif;
-            font-optical-sizing: auto;
-            font-weight: 600;
-            font-size: 22px;
-            letter-spacing: 0.01em;
-            color: #FFE9A8;
-            text-shadow: 0 2px 18px rgba(0,0,0,0.45);
-        }
-        .credit-main.italic {
-            font-style: italic;
-        }
-        .credit-rule {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--gold-warm);
-        }
-        .credit-rule::before, .credit-rule::after {
-            content: '';
-            width: 24px; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
-        }
-        .credit-photo {
-            width: 86px;
-            height: 86px;
-            border-radius: 9999px;
-            object-fit: cover;
-            border: 3px solid #FFE9A8;
-            background: var(--cream);
-            box-shadow:
-                0 0 0 1px rgba(239, 201, 116, 0.6),
-                0 0 28px rgba(239, 201, 116, 0.55),
-                0 14px 30px rgba(0, 0, 0, 0.45);
-            animation: photoGlow 2.4s ease-in-out infinite;
-        }
-        @keyframes photoGlow {
-            0%, 100% { box-shadow: 0 0 0 1px rgba(239, 201, 116, 0.6), 0 0 24px rgba(239, 201, 116, 0.45), 0 14px 30px rgba(0,0,0,0.45); }
-            50%      { box-shadow: 0 0 0 1px rgba(239, 201, 116, 0.85), 0 0 38px rgba(239, 201, 116, 0.7), 0 14px 30px rgba(0,0,0,0.45); }
-        }
-        .credit-sub {
-            font-family: 'Cinzel', serif;
-            font-weight: 600;
-            font-size: 10px;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
-            color: #F8F1E2;
-        }
-        .credit-dp {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 11px;
-            letter-spacing: 0.36em;
-            color: var(--berry-soft);
-            text-transform: uppercase;
         }
 
         /* ===== Floating Botanical Icon Buttons ===== */
@@ -498,66 +481,53 @@
                 radial-gradient(ellipse at center 90%, rgba(15, 76, 42, 0.14) 0%, transparent 50%);
         }
 
-        /* Botanical specimen tag (taxonomy chip) — single-line, auto-hide on interaction */
+        /* Botanical specimen tag (taxonomy chip) */
         .specimen-tag {
             position: absolute;
-            top: 14px;
+            top: 18px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 7px 18px;
-            background: rgba(248, 241, 226, 0.82);
-            backdrop-filter: blur(20px) saturate(170%);
-            -webkit-backdrop-filter: blur(20px) saturate(170%);
-            border: 1px solid rgba(184, 134, 43, 0.5);
+            padding: 8px 18px;
+            background: rgba(251, 246, 236, 0.78);
+            backdrop-filter: blur(18px) saturate(170%);
+            -webkit-backdrop-filter: blur(18px) saturate(170%);
+            border: 1px solid rgba(201, 149, 42, 0.5);
             border-radius: 9999px;
             box-shadow:
-                0 8px 22px rgba(31, 74, 44, 0.18),
+                0 8px 22px rgba(15, 76, 42, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 10px;
             z-index: 20;
-            white-space: nowrap;
-            max-width: calc(100vw - 32px);
-            pointer-events: none;
-            opacity: 1;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .specimen-tag.is-hidden {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-10px);
-            pointer-events: none;
         }
         .specimen-tag .latin {
-            font-family: 'Cormorant Garamond', 'Fraunces', serif;
+            font-family: 'Fraunces', serif;
             font-style: italic;
-            font-weight: 600;
-            color: var(--berry-red);
-            font-size: 14px;
-            letter-spacing: 0.005em;
-            white-space: nowrap;
+            font-weight: 500;
+            color: var(--maroon);
+            font-size: 13px;
+            letter-spacing: 0.01em;
         }
         .specimen-tag .dot {
             width: 5px; height: 5px;
             background: var(--gold-royal);
             border-radius: 9999px;
             box-shadow: 0 0 8px var(--gold-warm);
-            flex-shrink: 0;
         }
         .specimen-tag .common {
-            font-family: 'Cinzel', serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             font-size: 10px;
-            letter-spacing: 0.24em;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--leaf-deep);
-            white-space: nowrap;
+            color: var(--forest-deep);
         }
 
         /* Footer (forest green parchment) */
         .glass-footer {
             background:
-                linear-gradient(135deg, rgba(31, 74, 44, 0.95) 0%, rgba(58, 107, 67, 0.93) 60%, rgba(107, 74, 43, 0.92) 100%);
+                linear-gradient(135deg, rgba(15, 76, 42, 0.94) 0%, rgba(27, 94, 32, 0.94) 100%);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
             border-top: 1px solid rgba(201, 149, 42, 0.55);
@@ -581,15 +551,15 @@
         .footer-label {
             font-family: 'Cinzel', serif;
             font-weight: 600;
-            letter-spacing: 0.30em;
-            color: var(--gold-bright);
+            letter-spacing: 0.28em;
+            color: #FFD66B;
             text-transform: uppercase;
         }
         .footer-version {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 500;
-            letter-spacing: 0.12em;
-            color: rgba(248, 241, 226, 0.88);
+            letter-spacing: 0.10em;
+            color: rgba(232, 245, 233, 0.85);
         }
 
         /* Decorative laurel divider */
@@ -623,63 +593,53 @@
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
 
         <div class="relative z-10 flex flex-col items-center px-6">
-            <!-- Gold botanical emblem -->
-            <div class="splash-emblem mb-6">
-                <div class="emblem-disc w-24 h-24 rounded-full flex items-center justify-center relative">
-                    <!-- Leaf monogram -->
-                    <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="#0F4C2A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2C8 6 5 10 5 14a7 7 0 0014 0c0-4-3-8-7-12z"/>
-                        <path d="M12 14v8"/>
-                        <path d="M9 11c1 1 2 1.5 3 1.5S14 12 15 11"/>
-                    </svg>
+            <!-- Circular profile portrait (replaces leaf emblem) -->
+            <div class="splash-portrait mb-2">
+                <div class="portrait-glow"></div>
+                <div class="portrait-ring">
+                    <div class="portrait-inner">
+                        <img src="assets/haris-horizon.webp" alt="Haris Aslam · Horizon">
+                    </div>
                 </div>
             </div>
 
-            <span class="gold-badge mb-4">
+            <!-- Animated credit line: Made by Horizon —— Haris Aslam —— DP-2420 -->
+            <div id="credit-line" class="credit-line" aria-label="Made by Horizon — Haris Aslam — DP-2420">
+                <span class="credit-piece made"     data-step="1">Made&nbsp;by</span>
+                <span class="credit-piece horizon shimmer-text" data-step="2">Horizon</span>
+                <span class="credit-piece dash"     data-step="3">——</span>
+                <span class="credit-piece haris"    data-step="4">Haris&nbsp;Aslam</span>
+                <span class="credit-piece dash"     data-step="5">——</span>
+                <span class="credit-piece dp"       data-step="6">DP-2420</span>
+            </div>
+
+            <!-- Pharmacognosy chip (slightly lower now, after credit) -->
+            <span class="gold-badge mb-4 mt-2">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.15L2 9.36h7.61z"/></svg>
                 Pharmacognosy · Heritage
             </span>
 
-            <h1 class="font-fraunces text-4xl md:text-5xl mb-2 font-bold tracking-tight" style="color: #FFE9A8; text-shadow: 0 2px 18px rgba(0,0,0,0.5);">Ashwagandha 3D</h1>
+            <h1 class="font-fraunces text-4xl md:text-5xl mb-2 font-bold tracking-tight" style="color: var(--forest-deep); font-feature-settings: 'liga','dlig','ss01';">Ashwagandha&nbsp;3D</h1>
 
             <div class="laurel-divider mb-3">
-                <span class="font-cinzel text-[11px] tracking-[0.4em]" style="color: var(--berry-soft);">WITHANIA SOMNIFERA</span>
+                <span class="font-cinzel text-[11px] tracking-[0.4em]" style="color: var(--maroon);">WITHANIA SOMNIFERA</span>
             </div>
 
-            <p class="font-jost text-[11px] font-semibold tracking-[0.32em] uppercase mb-7" style="color: rgba(248, 241, 226, 0.78);">Explore · Rotate · Discover</p>
+            <p class="font-space text-[11px] font-semibold tracking-[0.32em] uppercase mb-9" style="color: var(--forest-mid);">Explore · Rotate · Discover</p>
 
             <div class="w-72 h-[3px] progress-track rounded-full overflow-hidden">
                 <div id="progress-bar" class="h-full progress-fill rounded-full" style="width:0%"></div>
             </div>
             <div class="flex items-center gap-2 mt-4">
-                <span id="progress-text" class="font-jost text-xs font-medium tabular-nums" style="color: var(--gold-bright);">Loading 0%</span>
+                <span id="progress-text" class="font-space text-xs font-medium tabular-nums" style="color: var(--forest-deep);">Loading 0%</span>
                 <span class="dot-loader"><span></span><span></span><span></span></span>
-            </div>
-
-            <!-- Animated credit stage: Made by Horizon → Haris Aslam (with photo) → DP 2420 -->
-            <div class="credit-stage" id="credit-stage">
-                <!-- Slide 1: Made by Horizon -->
-                <div class="credit-slide" data-slide="1">
-                    <span class="credit-eyebrow">Made By</span>
-                    <span class="credit-main italic">Horizon</span>
-                    <span class="credit-rule"></span>
-                </div>
-                <!-- Slide 2: Haris Aslam with photo -->
-                <div class="credit-slide" data-slide="2">
-                    <img src="assets/haris-horizon.webp" alt="Haris Aslam" class="credit-photo">
-                    <span class="credit-sub">Haris Aslam</span>
-                </div>
-                <!-- Slide 3: DP 2420 -->
-                <div class="credit-slide" data-slide="3">
-                    <span class="credit-eyebrow">Roll No</span>
-                    <span class="credit-dp">DP&nbsp;·&nbsp;2420</span>
-                </div>
             </div>
         </div>
 
-        <div class="absolute bottom-6 font-cinzel text-[10px] font-semibold tracking-[0.4em] uppercase" style="color: var(--gold-bright);">Ashwagandha 3D</div>
+        <div class="absolute bottom-6 font-cinzel text-[10px] font-semibold tracking-[0.4em] uppercase" style="color: var(--maroon);">Curated by Horizon</div>
     </div>
 
     <!-- ===== Main App ===== -->
@@ -705,11 +665,11 @@
         <!-- ===== 3D Model Viewer ===== -->
         <main class="flex-grow w-full relative model-stage">
 
-            <!-- Botanical specimen taxonomy tag (single line, auto-hides on interaction) -->
-            <div id="specimen-tag" class="specimen-tag">
+            <!-- Botanical specimen taxonomy tag -->
+            <div class="specimen-tag">
                 <span class="common">Specimen</span>
                 <span class="dot"></span>
-                <span class="latin">Withania&nbsp;somnifera</span>
+                <span class="latin">Withania somnifera</span>
             </div>
 
             <model-viewer
@@ -735,9 +695,9 @@
                             <div class="w-5 h-5 rounded-full absolute anim-swipe touch-indicator"
                                  style="background: var(--forest-deep);"></div>
                         </div>
-                        <span class="font-jost text-[11px] font-semibold text-center" style="color: var(--leaf-deep);">
+                        <span class="font-space text-[11px] font-semibold text-center" style="color: var(--forest-deep);">
                             1 Finger
-                            <br><span class="font-inter font-normal" style="color: var(--berry-red);">Drag to Rotate</span>
+                            <br><span class="font-manrope font-normal" style="color: var(--maroon);">Drag to Rotate</span>
                         </span>
                     </div>
                     <div class="flex flex-col items-center">
@@ -747,9 +707,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6M7 10h6"/>
                             </svg>
                         </div>
-                        <span class="font-jost text-[11px] font-semibold text-center" style="color: var(--leaf-deep);">
+                        <span class="font-space text-[11px] font-semibold text-center" style="color: var(--forest-deep);">
                             2 Fingers
-                            <br><span class="font-inter font-normal" style="color: var(--berry-red);">Pinch to Zoom</span>
+                            <br><span class="font-manrope font-normal" style="color: var(--maroon);">Pinch to Zoom</span>
                         </span>
                     </div>
                 </div>
@@ -791,45 +751,56 @@
         const tutorial = document.getElementById('tutorial-overlay');
         const rotateBtn = document.getElementById('auto-rotate-btn');
         const resetBtn  = document.getElementById('reset-btn');
-        const specimenTag = document.getElementById('specimen-tag');
 
-        // ===== Splash credit transition gate =====
-        // Model load is gated until the full credit transition completes.
-        // Even if the model loads instantly, progress is capped at 99%
-        // until "Made by Horizon → Haris Aslam → DP 2420" finishes.
-        const slides = Array.from(document.querySelectorAll('#credit-stage .credit-slide'));
-        const SLIDE_DURATION = 1600;   // ms each slide stays visible
-        const INITIAL_DELAY  = 600;    // ms before first slide shows
-        const FINAL_HOLD     = 700;    // ms hold after last slide
-        const totalCreditTime = INITIAL_DELAY + SLIDE_DURATION * slides.length + FINAL_HOLD;
-
-        let creditDone = false;
+        /* ====== Credit-line intro animation gating ====== */
+        // Loader is capped at 99% until the credit animation completes,
+        // even if the model finishes loading early.
+        let creditAnimationDone = false;
         let modelLoaded = false;
 
-        // Drive credit slide animation
-        const runCredits = () => {
-            let i = 0;
-            const playNext = () => {
-                slides.forEach(s => s.classList.remove('active'));
-                if (i < slides.length) {
-                    slides[i].classList.add('active');
-                    i++;
-                    setTimeout(playNext, SLIDE_DURATION);
-                } else {
-                    setTimeout(() => {
-                        creditDone = true;
-                        tryFinishSplash();
-                    }, FINAL_HOLD);
-                }
-            };
-            setTimeout(playNext, INITIAL_DELAY);
-        };
-        runCredits();
+        // Reveal credit pieces one by one, then mark animation done
+        const creditPieces = document.querySelectorAll('#credit-line .credit-piece');
+        const stepDelays = [200, 700, 1250, 1650, 2200, 2600]; // ms after splash mount
+        const lastDelay  = stepDelays[stepDelays.length - 1];
+        const holdAfter  = 900; // extra hold so user can read the full name
 
-        const finishSplash = () => {
-            // ensure progress shows 100%
+        creditPieces.forEach((el, i) => {
+            setTimeout(() => el.classList.add('show'), stepDelays[i] || 0);
+        });
+
+        setTimeout(() => {
+            creditAnimationDone = true;
+            tryFinishSplash();
+        }, lastDelay + holdAfter);
+
+        /* ====== Loader progress (capped to 99% until credit done) ====== */
+        viewer.addEventListener('progress', (e) => {
+            const raw = Math.round(e.detail.totalProgress * 100);
+            const shown = (!creditAnimationDone && raw >= 100) ? 99 : Math.min(raw, creditAnimationDone ? 100 : 99);
+            bar.style.width = shown + '%';
+            text.textContent = `Loading ${shown}%`;
+            if (raw >= 100) {
+                modelLoaded = true;
+                tryFinishSplash();
+            }
+        });
+
+        viewer.addEventListener('load', () => {
+            modelLoaded = true;
+            tryFinishSplash();
+        });
+
+        function tryFinishSplash() {
+            if (!(creditAnimationDone && modelLoaded)) return;
+            // Push to 100% visually, then dismiss splash
             bar.style.width = '100%';
             text.textContent = 'Loading 100%';
+            setTimeout(dismissSplash, 350);
+        }
+
+        function dismissSplash() {
+            if (splash.dataset.gone === '1') return;
+            splash.dataset.gone = '1';
             splash.style.opacity = '0';
             setTimeout(() => {
                 splash.style.display = 'none';
@@ -846,44 +817,7 @@
                 viewer.addEventListener('pointerdown', hide);
                 viewer.addEventListener('camera-change', hide);
             }, 700);
-        };
-
-        const tryFinishSplash = () => {
-            if (creditDone && modelLoaded) finishSplash();
-        };
-
-        // Hide / show specimen tag so it doesn't disturb the model
-        let specimenHideTimer = null;
-        const hideSpecimen = () => {
-            if (!specimenTag) return;
-            specimenTag.classList.add('is-hidden');
-            clearTimeout(specimenHideTimer);
-        };
-        const showSpecimenAfter = (ms = 2200) => {
-            if (!specimenTag) return;
-            clearTimeout(specimenHideTimer);
-            specimenHideTimer = setTimeout(() => {
-                if (!rotating) specimenTag.classList.remove('is-hidden');
-            }, ms);
-        };
-
-        viewer.addEventListener('progress', (e) => {
-            let p = Math.round(e.detail.totalProgress * 100);
-            // Cap at 99% until the credit transition is complete
-            if (!creditDone && p >= 100) p = 99;
-            bar.style.width = p + '%';
-            text.textContent = `Loading ${p}%`;
-        });
-
-        viewer.addEventListener('load', () => {
-            modelLoaded = true;
-            if (!creditDone) {
-                // Hold the bar at 99% visually until credits finish
-                bar.style.width = '99%';
-                text.textContent = 'Loading 99%';
-            }
-            tryFinishSplash();
-        });
+        }
 
         let rotating = false;
         rotateBtn.addEventListener('click', () => {
@@ -893,27 +827,11 @@
                 viewer.setAttribute('auto-rotate-delay', '0');
                 viewer.setAttribute('rotation-per-second', '30deg');
                 rotateBtn.classList.add('active');
-                hideSpecimen();           // hide pill while auto-rotating
             } else {
                 viewer.removeAttribute('auto-rotate');
                 rotateBtn.classList.remove('active');
-                showSpecimenAfter(800);   // bring back after stop
             }
         });
-
-        // Hide specimen pill on any model interaction (touch / drag / camera move)
-        viewer.addEventListener('pointerdown', hideSpecimen);
-        viewer.addEventListener('camera-change', () => {
-            hideSpecimen();
-            if (!rotating) showSpecimenAfter(2200);
-        });
-        viewer.addEventListener('pointerup', () => {
-            if (!rotating) showSpecimenAfter(2200);
-        });
-        viewer.addEventListener('touchstart', hideSpecimen, { passive: true });
-        viewer.addEventListener('touchend', () => {
-            if (!rotating) showSpecimenAfter(2200);
-        }, { passive: true });
 
         resetBtn.addEventListener('click', () => {
             viewer.cameraOrbit  = 'auto auto auto';
@@ -923,10 +841,9 @@
             resetBtn.classList.remove('spin-once');
             void resetBtn.offsetWidth;
             resetBtn.classList.add('spin-once');
-            hideSpecimen();
-            showSpecimenAfter(900);
         });
     })();
     </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
